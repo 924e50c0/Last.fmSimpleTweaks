@@ -16,4 +16,10 @@ Everything is optional save for small changes to visual inconsistencies.
 - Experimental horizontal profile with optional sidebar shoutbox
 - Screenshot mode that censors personal informations on profiles (see below)
 
+## 🧪 To-do list
+- Add accent color
+- Add love button
+
 ## 🖼️ Screenshots
+| ![profile](/previews/profile.png) | ![tweaks](/previews/tweaks.png) |
+| --------------------------------- | ------------------------------- |
