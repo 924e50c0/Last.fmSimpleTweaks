@@ -12,6 +12,8 @@
 @var color      bgColor             " ↳ Background color" #000
 @var color      fgColor             " ↳ Text color" #fff
 @var color      linkColor           " ↳ Link color" #52a5ff
+@var color      tagColor            " ↳ Tag color" #ab3636
+@var checkbox   tagsLink            "  ↳ Use for tag links" 1
 @var color      accentColor         " ↳ Accent color 🧪" #ab3636
 @var checkbox   bgTint              "  ↳ Tint backgrounds" 0
 @var range      tintAmount          "   ↳ Tint amount" [5, 0, 60, 1, '%']
@@ -272,9 +274,74 @@
             margin-top: 100px
         }
 
+        .btn-secondary {
+            background-color: var(--bgLight);
+            color: fgColor;
 
+            &:hover {
+                background-color: var(--bgLight-hover) !important;
+                color: fgColor !important;
+            }
+        }
+
+        .btn-add,
+        .btn-primary,
+        .no-data-message-button,
+        [data-toggle-button-current-state="unfollowed"] .user-list-follower-btn {
+            background-color: accentColor;
+
+            &:hover {
+                background-color: lighten(accentColor, 10%) !important;
+            }
+        }
+
+        .recommended-next-button,
+        .secondary-nav-item-link--active::after,
+        a.secondary-nav-item-link:focus::after,
+        a.secondary-nav-item-link:hover::after,
         .chartlist-count-bar-slug {
             background-color: accentColor;
+        }
+
+        .recommended-next-page:hover .recommended-next-button {
+            background-color: accentColor
+        }
+
+        .events-list-sidebar .events-list-item-date-icon-month,
+        .events-list .events-list-item-date-icon-month,
+        .pagination-page[aria-current],
+        .js .date-range-picker-button,
+        .date-range-picker-preset--selected a,
+        .date-range-picker-preset--selected a:focus,
+        .date-range-picker-preset--selected a:hover,
+        .library-controls .secondary-nav-item .secondary-nav-item-link--active,
+        .library-controls .secondary-nav-item .secondary-nav-item-link:focus,
+        .library-controls .secondary-nav-item .secondary-nav-item-link:hover,
+        .dropdown-menu-clickable-item--selected,
+        .dropdown-menu-clickable-item--selected:focus,
+        .dropdown-menu-clickable-item--selected:hover,
+        .col-main .secondary-nav-item-link--active,
+        .col-main .secondary-nav-item-link--active:focus,
+        .col-main .secondary-nav-item-link--active:hover {
+            color: accentColor;
+        }
+
+        .pagination-page:not(.pagination-page--ellipsis):hover,
+        .pagination-page[aria-current] {
+            box-shadow: inset 0 -2px accentColor
+        }
+
+        .listener-trend path.highcharts-area body:not([class*="namespace--user_listening-report"]) rect.highcharts-color-0 {
+            fill: transparentify(accentColor, accentColor, 20%)
+        }
+
+        .listener-trend path.highcharts-graph {
+            stroke: accentColor
+        }
+
+        .listener-trend g path.highcharts-point {
+            fill: bgColor;
+            stroke: accentColor
         }
 
         a:focus .chartlist-count-bar-slug,
@@ -312,7 +379,7 @@
             color: fgColor !important;
         }
 
-        g.highcharts-xaxis-labels>text {
+        body:not([class*="namespace--user_listening-report"]) g.highcharts-xaxis-labels>text {
             color: fgColor !important;
             fill: fgColor !important;
         }
@@ -329,7 +396,8 @@
             color: var(--fgLight)
         }
 
-        a {
+        a,
+        .more-items {
             color: linkColor
         }
 
@@ -368,455 +436,474 @@
             color: fgColor
         }
 
-        .labs-cta .btn-primary.btn-labs-cta {
-            background: var(--bgSubtle);
-
-            &:hover {
-                background: var(--bgSubtle-hover)
-            }
-        }
-
-        .grid-items-empty-inner {
-            background: var(--bgSubtle)
-        }
-
-        .chartlist-row--highlight,
-        .chartlist-row--now-scrobbling,
-        .change-username-upsell,
-        .music-section-rediscover-subscribe-banner-cta {
-            background: var(--bgLight)
-        }
-
-        .chartlist-row--highlight:hover,
-        .chartlist-row--now-scrobbling:hover {
-            background: var(--bgLight-hover)
-        }
-
-        .grid-items--fade-out::after {
-            background: linear-gradient(hsla(0, 0%, 100%, 0), var(--bgDark));
-        }
-
-        .events-filters,
-        .chartlist-break::after,
-        .chartlist-row::after,
-        .content-top-has-nav .content-top::after,
-        .two-column-layout .content-top::after,
-        .stationlink-list .stationlink::after,
-        .shout {
-            border-color: var(--borderSubtle)
-        }
-
-        .date-range-picker-form,
-        .more-link-with-action a+a::before,
-        .promo-v3 .listening-report-promo,
-        .section-with-settings .section-control::before,
-        .shout-form,
-        .user-list-shared-artists,
-        .content-form .form-control,
-        .content-form input[type="date"],
-        .content-form input[type="email"],
-        .content-form input[type="number"],
-        .content-form input[type="password"],
-        .content-form input[type="text"],
-        .content-form input[type="url"],
-        .content-form select,
-        .content-form textarea,
-        .content-form .form-control:hover:not([disabled]),
-        .content-form input[type="date"]:hover:not([disabled]),
-        .content-form input[type="email"]:hover:not([disabled]),
-        .content-form input[type="number"]:hover:not([disabled]),
-        .content-form input[type="password"]:hover:not([disabled]),
-        .content-form input[type="text"]:hover:not([disabled]),
-        .content-form input[type="url"]:hover:not([disabled]),
-        .content-form select:hover:not([disabled]),
-        .content-form textarea:hover:not([disabled]),
-        .header-metadata *+.header-metadata-item--attendees::before,
-        .header-metadata *+.header-metadata-item--tasteometer::before,
-        .header-metadata *+.header-metadata-item--user-scrobbles::before,
-        .header-metadata :not(.header-metadata-item--user-scrobbles)+.header-metadata-item--listeners-you-know::before {
-            border-color: var(--borderLight);
-        }
-
-        .content-form .form-control:focus,
-        .content-form input[type="date"]:focus,
-        .content-form input[type="email"]:focus,
-        .content-form input[type="number"]:focus,
-        .content-form input[type="password"]:focus,
-        .content-form input[type="text"]:focus,
-        .content-form input[type="url"]:focus,
-        .content-form select:focus,
-        .content-form textarea:focus {
-            border-color: var(--borderLight);
-            box-shadow: 0 3px 9px 0 var(--borderLight);
-        }
-
-        .music-recommended-artists-item-toggle {
-            box-shadow: 0 0 0 2px var(--bgDark)
-        }
-
-        .globalchart .globalchart-item {
-            box-shadow: 0 1px var(--borderLight), inset 0 -1px var(--borderLight)
-        }
-
-        .secondary-nav,
-        .events-list td,
-        .events-list-anhv1 td,
-        .events-list-anhv1 th {
-            box-shadow: inset 0 -1px var(--borderSubtle)
-        }
-
-        .recs-feed .context {
-            box-shadow: inset 1px 0 var(--borderSubtle), inset -1px -1px var(--borderSubtle)
-        }
-
-        .wiki-legal {
-            border-color: var(--borderSubtle);
-        }
-
-        .btn-shortcut {
-            box-shadow: inset 0 0 0 1px var(--borderLight);
-            color: var(--fgSubtle);
-        }
-
-        body:not(.js-focus-visible) body:not([data-whatinput="touch"]) .btn-shortcut:focus,
-        body:not([data-whatinput="touch"]) .btn-shortcut .focus-visible,
-        body:not([data-whatinput="touch"]) .btn-shortcut:hover {
-            box-shadow: inset 0 0 0 1px var(--fgSubtle);
-            color: fgColor;
-        }
-
-        .api-session::after,
-        .recommended-tracks-item-date+.recommended-tracks-item-context::before,
-        .recommended-tracks-item-listeners+.recommended-tracks-item-context::before {
-            background: var(--borderLight)
-        }
-
-        #scrobble-chart-content,
-        .listener-trend {
-
-            .highcharts-background,
-            .highcharts-alternate-grid {
-                fill: none;
-            }
-
-
-            .highcharts-axis-line {
-                stroke: var(--bgSubtle)
-            }
-
-            .highcharts-yaxis-grid .highcharts-grid-line {
-                stroke: var(--bgSubtle)
-            }
-        }
-
-        .modal-body,
-        .user-dashboard-tooltip,
-        .dropdown-menu-clickable,
-        .date-picker-content,
-        .events-filter-location-dropdown,
-        .navlist-hidden-list,
-        .share-chart .share-block,
-        .scrobble-stats-info-tooltip,
-        .date-range-picker-content {
-            background: var(--bgLight);
-
-            &::before {
-                background-color: var(--bgLight) !important;
-            }
-
-        }
-
-        .date-range-picker-content::before {
-            width: 36px;
-            height: 36px;
-        }
-
-
-        .dropdown-menu-clickable-item:not(.dropdown-menu-clickable-item--selected),
-        .date-range-picker-presets :not([class*="selected"]) a,
-        .navlist-hidden-list a,
+        .labs-cta .btn-primary.btn-labs-cta,
         {
-        color: fgColor !important
+        background: var(--bgSubtle);
+
+        &:hover {
+            background: var(--bgSubtle-hover)
+        }
     }
 
-    .dropdown-menu-clickable-item:active,
-    body:not([data-whatinput="touch"]) .dropdown-menu-clickable-item:focus,
-    body:not([data-whatinput="touch"]) .dropdown-menu-clickable-item:hover,
-    .navlist-hidden-list a:active,
-    body:not([data-whatinput="touch"]) .navlist-hidden-list a:focus,
-    body:not([data-whatinput="touch"]) .navlist-hidden-list a:hover,
-    .date-range-picker-presets a:active,
-    body:not([data-whatinput="touch"]) .date-range-picker-presets a:focus,
-    body:not([data-whatinput="touch"]) .date-range-picker-presets a:hover {
-        background: var(--bgLight-hover);
-
+    table.table tr:nth-child(2n) td,
+    .grid-items-empty-inner,
+    .wiki-style-rules {
+        background: var(--bgSubtle)
     }
 
-    .stationlink-list .stationlink::before,
-    .chartlist-play-button::before {
-        background-color: var(--bgSubtle);
-        box-shadow: 0 0 0 1px var(--borderLight);
+    .chartlist-row--highlight,
+    .chartlist-row--now-scrobbling,
+    .change-username-upsell,
+    .music-section-rediscover-subscribe-banner-cta {
+        background: var(--bgLight)
     }
 
-    .stationlink-list .stationlink:focus::before,
-    .stationlink-list .stationlink:hover::before {
-        background-color: var(--fgSubtle)
+    .chartlist-row--highlight:hover,
+    .chartlist-row--now-scrobbling:hover {
+        background: var(--bgLight-hover)
     }
 
-    /* artist default image */
-    img[src="https://lastfm.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.jpg"],
-    img[src="https://lastfm.freetls.fastly.net/i/u/avatar300s/2a96cbd8b46e442fc41c2b86b821562f.jpg"] {
-        mask-image: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjxzdmcKICAgaGVpZ2h0PSIzNCIKICAgdmlld0JveD0iMCAtOTYwIDEzNjAgMTM2MCIKICAgd2lkdGg9IjM0IgogICBmaWxsPSIjMmQyZDJkIgogICB2ZXJzaW9uPSIxLjEiCiAgIGlkPSJzdmcxIgogICBzb2RpcG9kaTpkb2NuYW1lPSJzdGFyXzI1ZHBfMkQyRDJEX0ZJTEwxX3dnaHQ1MDBfR1JBRDBfb3BzejI0LnN2ZyIKICAgaW5rc2NhcGU6dmVyc2lvbj0iMS40ICg4NmE4YWQ3LCAyMDI0LTEwLTExKSIKICAgeG1sbnM6aW5rc2NhcGU9Imh0dHA6Ly93d3cuaW5rc2NhcGUub3JnL25hbWVzcGFjZXMvaW5rc2NhcGUiCiAgIHhtbG5zOnNvZGlwb2RpPSJodHRwOi8vc29kaXBvZGkuc291cmNlZm9yZ2UubmV0L0RURC9zb2RpcG9kaS0wLmR0ZCIKICAgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIgogICB4bWxuczpzdmc9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8ZGVmcwogICAgIGlkPSJkZWZzMSIgLz4KICA8c29kaXBvZGk6bmFtZWR2aWV3CiAgICAgaWQ9Im5hbWVkdmlldzEiCiAgICAgcGFnZWNvbG9yPSIjZmZmZmZmIgogICAgIGJvcmRlcmNvbG9yPSIjMDAwMDAwIgogICAgIGJvcmRlcm9wYWNpdHk9IjAuMjUiCiAgICAgaW5rc2NhcGU6c2hvd3BhZ2VzaGFkb3c9IjIiCiAgICAgaW5rc2NhcGU6cGFnZW9wYWNpdHk9IjAuMCIKICAgICBpbmtzY2FwZTpwYWdlY2hlY2tlcmJvYXJkPSIwIgogICAgIGlua3NjYXBlOmRlc2tjb2xvcj0iI2QxZDFkMSIKICAgICBpbmtzY2FwZTp6b29tPSIxNi4zMTI1IgogICAgIGlua3NjYXBlOmN4PSIxLjYyNDUyMTEiCiAgICAgaW5rc2NhcGU6Y3k9IjIyLjk1Nzg1NCIKICAgICBpbmtzY2FwZTp3aW5kb3ctd2lkdGg9IjE5MjAiCiAgICAgaW5rc2NhcGU6d2luZG93LWhlaWdodD0iMTAwMSIKICAgICBpbmtzY2FwZTp3aW5kb3cteD0iLTkiCiAgICAgaW5rc2NhcGU6d2luZG93LXk9Ii05IgogICAgIGlua3NjYXBlOndpbmRvdy1tYXhpbWl6ZWQ9IjEiCiAgICAgaW5rc2NhcGU6Y3VycmVudC1sYXllcj0ic3ZnMSIgLz4KICA8cGF0aAogICAgIGQ9Ik0gNjgwLC00OS4zMTkxNTEgNTEzLjI4LDUxLjE2MDg0OCBxIC0xMi42Nyw3Ljk1IC0yNi4zNSw2LjgzIC0xMy42NywtMS4xMiAtMjMuODYsLTkuMDcgLTEwLjIsLTcuOTYgLTE1LjgsLTIwLjAxIC01LjYsLTEyLjA1OTk5OSAtMi4xMiwtMjYuNzI5OTk5IGwgNDQuMjQsLTE4OS43MTk5OTkgLTE0Ny43MiwtMTI3LjcyIHEgLTExLjQzLC0xMC4xOSAtMTQuMjksLTIzLjI1IC0yLjg2LC0xMy4wNSAxLjM4LC0yNS40OSA0LjI0LC0xMi40MyAxMy43OSwtMjAuNjMgOS41NiwtOC4xOSAyNS4yMywtMTAuMTkgbCAxOTQuNzIsLTE3IDc1LjQ4LC0xNzguOTYgcSA1LjcyLC0xMy45MSAxNy41MywtMjAuNjMgMTEuODIsLTYuNzIgMjQuNDksLTYuNzIgMTIuNjcsMCAyNC40OSw2LjcyIDExLjgxLDYuNzIgMTcuNTMsMjAuNjMgbCA3NS40OCwxNzguOTYgMTk0LjcyLDE3IHEgMTUuNjcsMiAyNS4yMywxMC4xOSA5LjU1LDguMiAxMy43OSwyMC42MyA0LjI0LDEyLjQ0IDEuMzgsMjUuNDkgLTIuODYsMTMuMDYgLTE0LjI5LDIzLjI1IGwgLTE0Ny43MiwxMjcuNzIgNDQuMjQsMTg5LjcxOTk5OSBxIDMuNDgsMTQuNjcgLTIuMTIsMjYuNzI5OTk5IC01LjYsMTIuMDUgLTE1LjgsMjAuMDEwMDAxIC0xMC4xOSw3Ljk0OTk5OSAtMjMuODYsOS4wNjk5OTkgLTEzLjY4LDEuMTIgLTI2LjM1LC02LjgzIHoiCiAgICAgaWQ9InBhdGgxIiAvPgo8L3N2Zz4K");
-        mask-size: cover;
-        opacity: .3;
+    .grid-items--fade-out::after {
+        background: linear-gradient(hsla(0, 0%, 100%, 0), var(--bgDark));
     }
 
-    .gallery-preview-missing-image:nth-child(2n+1) {
-        opacity: .6;
+    .resource-external-link::after {
+        border-color: var(--borderDark)
     }
 
-    /* album default image */
-    img[src="https://lastfm.freetls.fastly.net/i/u/300x300/c6f59c1e5e7240a4c0d427abd71f3dbb.jpg"] {
-        mask-image: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhLS0gQ3JlYXRlZCB3aXRoIElua3NjYXBlIChodHRwOi8vd3d3Lmlua3NjYXBlLm9yZy8pIC0tPgoKPHN2ZwogICB3aWR0aD0iNzkuMzc1bW0iCiAgIGhlaWdodD0iNzkuMzc1bW0iCiAgIHZpZXdCb3g9IjAgMCA3OS4zNzUgNzkuMzc1IgogICB2ZXJzaW9uPSIxLjEiCiAgIGlkPSJzdmcxIgogICB4bWw6c3BhY2U9InByZXNlcnZlIgogICBzb2RpcG9kaTpkb2NuYW1lPSJkcmF3aW5nLnN2ZyIKICAgaW5rc2NhcGU6dmVyc2lvbj0iMS40ICg4NmE4YWQ3LCAyMDI0LTEwLTExKSIKICAgeG1sbnM6aW5rc2NhcGU9Imh0dHA6Ly93d3cuaW5rc2NhcGUub3JnL25hbWVzcGFjZXMvaW5rc2NhcGUiCiAgIHhtbG5zOnNvZGlwb2RpPSJodHRwOi8vc29kaXBvZGkuc291cmNlZm9yZ2UubmV0L0RURC9zb2RpcG9kaS0wLmR0ZCIKICAgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIgogICB4bWxuczpzdmc9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48c29kaXBvZGk6bmFtZWR2aWV3CiAgICAgaWQ9Im5hbWVkdmlldzEiCiAgICAgcGFnZWNvbG9yPSIjZmZmZmZmIgogICAgIGJvcmRlcmNvbG9yPSIjMDAwMDAwIgogICAgIGJvcmRlcm9wYWNpdHk9IjAuMjUiCiAgICAgaW5rc2NhcGU6c2hvd3BhZ2VzaGFkb3c9IjIiCiAgICAgaW5rc2NhcGU6cGFnZW9wYWNpdHk9IjAuMCIKICAgICBpbmtzY2FwZTpwYWdlY2hlY2tlcmJvYXJkPSIwIgogICAgIGlua3NjYXBlOmRlc2tjb2xvcj0iI2QxZDFkMSIKICAgICBpbmtzY2FwZTpkb2N1bWVudC11bml0cz0ibW0iCiAgICAgaW5rc2NhcGU6em9vbT0iMS40MTQyMTM2IgogICAgIGlua3NjYXBlOmN4PSIxMjUuODY1MDEiCiAgICAgaW5rc2NhcGU6Y3k9IjkyLjk4NDU0MSIKICAgICBpbmtzY2FwZTp3aW5kb3ctd2lkdGg9IjE5MjAiCiAgICAgaW5rc2NhcGU6d2luZG93LWhlaWdodD0iMTAwMSIKICAgICBpbmtzY2FwZTp3aW5kb3cteD0iLTkiCiAgICAgaW5rc2NhcGU6d2luZG93LXk9Ii05IgogICAgIGlua3NjYXBlOndpbmRvdy1tYXhpbWl6ZWQ9IjEiCiAgICAgaW5rc2NhcGU6Y3VycmVudC1sYXllcj0ic3ZnMSIgLz48ZGVmcwogICAgIGlkPSJkZWZzMSI+PGNsaXBQYXRoCiAgICAgICBjbGlwUGF0aFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIKICAgICAgIGlkPSJjbGlwUGF0aDEwIj48Y2lyY2xlCiAgICAgICAgIHN0eWxlPSJkaXNwbGF5OmlubGluZTtmaWxsOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjAuMTQ5OTYxIgogICAgICAgICBpZD0iY2lyY2xlMTAiCiAgICAgICAgIGN4PSIzOS43MDQ5ODMiCiAgICAgICAgIGN5PSIzOS42ODE1MTkiCiAgICAgICAgIHI9IjI1LjA3NDc0OSIgLz48L2NsaXBQYXRoPjwvZGVmcz48cmVjdAogICAgIHN0eWxlPSJmaWxsOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjAuMTA2Njg2IgogICAgIGlkPSJyZWN0NCIKICAgICB3aWR0aD0iNzkuMzc0NjE5IgogICAgIGhlaWdodD0iNzkuMzc0NjE5IgogICAgIHg9IjAiCiAgICAgeT0iLTEuMTI3OTgxMmUtMTQiCiAgICAgY2xpcC1wYXRoPSJ1cmwoI2NsaXBQYXRoMTApIiAvPjwvc3ZnPgo=");
-        mask-size: cover;
-        opacity: .3;
+    .events-filters,
+    .chartlist-break::after,
+    .chartlist-row::after,
+    .content-top-has-nav .content-top::after,
+    .two-column-layout .content-top::after,
+    .stationlink-list .stationlink::after,
+    .shout {
+        border-color: var(--borderSubtle)
     }
 
-    /* album small default image */
-    img[src="https://lastfm.freetls.fastly.net/i/u/64s/c6f59c1e5e7240a4c0d427abd71f3dbb.jpg"] {
-        mask-image: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjxzdmcKICAgd2lkdGg9IjIwIgogICBoZWlnaHQ9IjIwIgogICB2aWV3Qm94PSIwIDAgMjAgMjAiCiAgIGZpbGw9Im5vbmUiCiAgIHZlcnNpb249IjEuMSIKICAgaWQ9InN2ZzIiCiAgIHNvZGlwb2RpOmRvY25hbWU9IlJlY29yZCBDaXJjbGUuc3ZnIgogICBpbmtzY2FwZTp2ZXJzaW9uPSIxLjQgKDg2YThhZDcsIDIwMjQtMTAtMTEpIgogICB4bWxuczppbmtzY2FwZT0iaHR0cDovL3d3dy5pbmtzY2FwZS5vcmcvbmFtZXNwYWNlcy9pbmtzY2FwZSIKICAgeG1sbnM6c29kaXBvZGk9Imh0dHA6Ly9zb2RpcG9kaS5zb3VyY2Vmb3JnZS5uZXQvRFREL3NvZGlwb2RpLTAuZHRkIgogICB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCiAgIHhtbG5zOnN2Zz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxkZWZzCiAgICAgaWQ9ImRlZnMyIiAvPgogIDxzb2RpcG9kaTpuYW1lZHZpZXcKICAgICBpZD0ibmFtZWR2aWV3MiIKICAgICBwYWdlY29sb3I9IiNmZmZmZmYiCiAgICAgYm9yZGVyY29sb3I9IiMwMDAwMDAiCiAgICAgYm9yZGVyb3BhY2l0eT0iMC4yNSIKICAgICBpbmtzY2FwZTpzaG93cGFnZXNoYWRvdz0iMiIKICAgICBpbmtzY2FwZTpwYWdlb3BhY2l0eT0iMC4wIgogICAgIGlua3NjYXBlOnBhZ2VjaGVja2VyYm9hcmQ9IjAiCiAgICAgaW5rc2NhcGU6ZGVza2NvbG9yPSIjZDFkMWQxIgogICAgIGlua3NjYXBlOnpvb209IjMyLjYyNSIKICAgICBpbmtzY2FwZTpjeD0iMTAuMDIyOTg5IgogICAgIGlua3NjYXBlOmN5PSIxMC4wMDc2NjMiCiAgICAgaW5rc2NhcGU6d2luZG93LXdpZHRoPSIxOTIwIgogICAgIGlua3NjYXBlOndpbmRvdy1oZWlnaHQ9IjEwMDEiCiAgICAgaW5rc2NhcGU6d2luZG93LXg9Ii05IgogICAgIGlua3NjYXBlOndpbmRvdy15PSItOSIKICAgICBpbmtzY2FwZTp3aW5kb3ctbWF4aW1pemVkPSIxIgogICAgIGlua3NjYXBlOmN1cnJlbnQtbGF5ZXI9InN2ZzIiIC8+CiAgPHBhdGgKICAgICBkPSJtIDYuNzUsMTAgYyAwLC0xLjc5NDkgMS40NTUxLC0zLjI1IDMuMjUsLTMuMjUgMS43OTQ5LDAgMy4yNSwxLjQ1NTEgMy4yNSwzLjI1IDAsMS43OTQ5IC0xLjQ1NTEsMy4yNSAtMy4yNSwzLjI1IC0xLjc5NDksMCAtMy4yNSwtMS40NTUxIC0zLjI1LC0zLjI1IHoiCiAgICAgZmlsbD0iIzJkMmQyZCIKICAgICBpZD0icGF0aDEiIC8+CiAgPHBhdGgKICAgICBmaWxsLXJ1bGU9ImV2ZW5vZGQiCiAgICAgY2xpcC1ydWxlPSJldmVub2RkIgogICAgIGQ9Ik0gMTAsMjAgQyAxNS41MjI4LDIwIDIwLDE1LjUyMjggMjAsMTAgMjAsNC40NzcxNSAxNS41MjI4LDAgMTAsMCA0LjQ3NzE1LDAgMCw0LjQ3NzE1IDAsMTAgMCwxNS41MjI4IDQuNDc3MTUsMjAgMTAsMjAgWiBNIDEwLDUuMjUgYyAtMi42MjMzNSwwIC00Ljc1LDIuMTI2NjUgLTQuNzUsNC43NSAwLDIuNjIzNCAyLjEyNjY1LDQuNzUgNC43NSw0Ljc1IDIuNjIzNCwwIDQuNzUsLTIuMTI2NiA0Ljc1LC00Ljc1IDAsLTIuNjIzMzUgLTIuMTI2NiwtNC43NSAtNC43NSwtNC43NSB6IgogICAgIGZpbGw9IiMyZDJkMmQiCiAgICAgaWQ9InBhdGgyIiAvPgo8L3N2Zz4K");
-        mask-size: cover;
-        scale: 70%;
+    .date-range-picker-form,
+    .more-link-with-action a+a::before,
+    .promo-v3 .listening-report-promo,
+    .section-with-settings .section-control::before,
+    .shout-form,
+    .user-list-shared-artists,
+    .content-form .form-control,
+    .content-form input[type="date"],
+    .content-form input[type="email"],
+    .content-form input[type="number"],
+    .content-form input[type="password"],
+    .content-form input[type="text"],
+    .content-form input[type="url"],
+    .content-form select,
+    .content-form textarea,
+    .content-form .form-control:hover:not([disabled]),
+    .content-form input[type="date"]:hover:not([disabled]),
+    .content-form input[type="email"]:hover:not([disabled]),
+    .content-form input[type="number"]:hover:not([disabled]),
+    .content-form input[type="password"]:hover:not([disabled]),
+    .content-form input[type="text"]:hover:not([disabled]),
+    .content-form input[type="url"]:hover:not([disabled]),
+    .content-form select:hover:not([disabled]),
+    .content-form textarea:hover:not([disabled]),
+    .header-metadata *+.header-metadata-item--attendees::before,
+    .header-metadata *+.header-metadata-item--tasteometer::before,
+    .header-metadata *+.header-metadata-item--user-scrobbles::before,
+    .header-metadata :not(.header-metadata-item--user-scrobbles)+.header-metadata-item--listeners-you-know::before {
+        border-color: var(--borderLight);
     }
 
-    if customTitles {
-        .about-me-sidebar p {
-            margin-top: 32px unless horizontalProfile;
+    .content-form .form-control:focus,
+    .content-form input[type="date"]:focus,
+    .content-form input[type="email"]:focus,
+    .content-form input[type="number"]:focus,
+    .content-form input[type="password"]:focus,
+    .content-form input[type="text"]:focus,
+    .content-form input[type="url"]:focus,
+    .content-form select:focus,
+    .content-form textarea:focus {
+        border-color: var(--borderLight);
+        box-shadow: 0 3px 9px 0 var(--borderLight);
+    }
+
+    .music-recommended-artists-item-toggle {
+        box-shadow: 0 0 0 2px var(--bgDark)
+    }
+
+    .globalchart .globalchart-item {
+        box-shadow: 0 1px var(--borderLight), inset 0 -1px var(--borderLight)
+    }
+
+    table.table td,
+    table.table th,
+    .secondary-nav,
+    .events-list td,
+    .events-list-anhv1 td,
+    .events-list-anhv1 th {
+        box-shadow: inset 0 -1px var(--borderSubtle)
+    }
+
+    .recs-feed .context {
+        box-shadow: inset 1px 0 var(--borderSubtle), inset -1px -1px var(--borderSubtle)
+    }
+
+    .wiki-legal {
+        border-color: var(--borderSubtle);
+    }
+
+    .btn-shortcut {
+        box-shadow: inset 0 0 0 1px var(--borderLight);
+        color: var(--fgSubtle);
+    }
+
+    body:not(.js-focus-visible) body:not([data-whatinput="touch"]) .btn-shortcut:focus,
+    body:not([data-whatinput="touch"]) .btn-shortcut .focus-visible,
+    body:not([data-whatinput="touch"]) .btn-shortcut:hover {
+        box-shadow: inset 0 0 0 1px var(--fgSubtle);
+        color: fgColor;
+    }
+
+    .api-session::after,
+    .recommended-tracks-item-date+.recommended-tracks-item-context::before,
+    .recommended-tracks-item-listeners+.recommended-tracks-item-context::before {
+        background: var(--borderLight)
+    }
+
+    #scrobble-chart-content,
+    .listener-trend {
+
+        .highcharts-background,
+        .highcharts-alternate-grid {
+            fill: none;
         }
 
-        #recent-tracks-section>h2:nth-child(1),
-        .about-me-sidebar>h2:nth-child(1) {
-            margin-top: unset;
+
+        .highcharts-axis-line {
+            stroke: var(--bgSubtle)
         }
 
-        .anhv1:not(:is([class*="namespace--settings"])) .col-main h2:not(.footer-heading, .share-heading, .date-heading, .metadata-title) {
-            font-family: Barlow Semi Condensed, Barlow, Helvetica Neue, Helvetica, Arial, sans-serif;
-            color: fgColor;
-            margin-top: 70px;
-            margin-bottom: 10px;
-            font-size: 24px;
-            font-weight: 700;
-            line-height: 30px;
-            line-height: 42px;
-            text-decoration: underline;
-            text-transform: uppercase;
-            text-underline-offset: 17px;
+        .highcharts-yaxis-grid .highcharts-grid-line {
+            stroke: var(--bgSubtle)
+        }
+    }
 
-            &~.buffer-standard {
-                margin-top: 32px;
+    .modal-body,
+    .user-dashboard-tooltip,
+    .dropdown-menu-clickable,
+    .date-picker-content,
+    .events-filter-location-dropdown,
+    .navlist-hidden-list,
+    .share-chart .share-block,
+    .scrobble-stats-info-tooltip,
+    .date-range-picker-content {
+        background: var(--bgLight);
+
+        &::before {
+            background-color: var(--bgLight) !important;
+        }
+
+    }
+
+    .date-range-picker-content::before {
+        width: 36px;
+        height: 36px;
+    }
+
+
+    .dropdown-menu-clickable-item:not(.dropdown-menu-clickable-item--selected),
+    .date-range-picker-presets :not([class*="selected"]) a,
+    .navlist-hidden-list a,
+    {
+    color: fgColor !important
+}
+
+.dropdown-menu-clickable-item:active,
+body:not([data-whatinput="touch"]) .dropdown-menu-clickable-item:focus,
+body:not([data-whatinput="touch"]) .dropdown-menu-clickable-item:hover,
+.navlist-hidden-list a:active,
+body:not([data-whatinput="touch"]) .navlist-hidden-list a:focus,
+body:not([data-whatinput="touch"]) .navlist-hidden-list a:hover,
+.date-range-picker-presets a:active,
+body:not([data-whatinput="touch"]) .date-range-picker-presets a:focus,
+body:not([data-whatinput="touch"]) .date-range-picker-presets a:hover {
+    background: var(--bgLight-hover);
+
+}
+
+.stationlink-list .stationlink::before,
+.chartlist-play-button::before {
+    background-color: var(--bgSubtle);
+    box-shadow: 0 0 0 1px var(--borderLight);
+}
+
+.stationlink-list .stationlink:focus::before,
+.stationlink-list .stationlink:hover::before {
+    background-color: var(--fgSubtle)
+}
+
+/* artist default image */
+img[src="https://lastfm.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.jpg"],
+img[src="https://lastfm.freetls.fastly.net/i/u/avatar300s/2a96cbd8b46e442fc41c2b86b821562f.jpg"] {
+    mask-image: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjxzdmcKICAgaGVpZ2h0PSIzNCIKICAgdmlld0JveD0iMCAtOTYwIDEzNjAgMTM2MCIKICAgd2lkdGg9IjM0IgogICBmaWxsPSIjMmQyZDJkIgogICB2ZXJzaW9uPSIxLjEiCiAgIGlkPSJzdmcxIgogICBzb2RpcG9kaTpkb2NuYW1lPSJzdGFyXzI1ZHBfMkQyRDJEX0ZJTEwxX3dnaHQ1MDBfR1JBRDBfb3BzejI0LnN2ZyIKICAgaW5rc2NhcGU6dmVyc2lvbj0iMS40ICg4NmE4YWQ3LCAyMDI0LTEwLTExKSIKICAgeG1sbnM6aW5rc2NhcGU9Imh0dHA6Ly93d3cuaW5rc2NhcGUub3JnL25hbWVzcGFjZXMvaW5rc2NhcGUiCiAgIHhtbG5zOnNvZGlwb2RpPSJodHRwOi8vc29kaXBvZGkuc291cmNlZm9yZ2UubmV0L0RURC9zb2RpcG9kaS0wLmR0ZCIKICAgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIgogICB4bWxuczpzdmc9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8ZGVmcwogICAgIGlkPSJkZWZzMSIgLz4KICA8c29kaXBvZGk6bmFtZWR2aWV3CiAgICAgaWQ9Im5hbWVkdmlldzEiCiAgICAgcGFnZWNvbG9yPSIjZmZmZmZmIgogICAgIGJvcmRlcmNvbG9yPSIjMDAwMDAwIgogICAgIGJvcmRlcm9wYWNpdHk9IjAuMjUiCiAgICAgaW5rc2NhcGU6c2hvd3BhZ2VzaGFkb3c9IjIiCiAgICAgaW5rc2NhcGU6cGFnZW9wYWNpdHk9IjAuMCIKICAgICBpbmtzY2FwZTpwYWdlY2hlY2tlcmJvYXJkPSIwIgogICAgIGlua3NjYXBlOmRlc2tjb2xvcj0iI2QxZDFkMSIKICAgICBpbmtzY2FwZTp6b29tPSIxNi4zMTI1IgogICAgIGlua3NjYXBlOmN4PSIxLjYyNDUyMTEiCiAgICAgaW5rc2NhcGU6Y3k9IjIyLjk1Nzg1NCIKICAgICBpbmtzY2FwZTp3aW5kb3ctd2lkdGg9IjE5MjAiCiAgICAgaW5rc2NhcGU6d2luZG93LWhlaWdodD0iMTAwMSIKICAgICBpbmtzY2FwZTp3aW5kb3cteD0iLTkiCiAgICAgaW5rc2NhcGU6d2luZG93LXk9Ii05IgogICAgIGlua3NjYXBlOndpbmRvdy1tYXhpbWl6ZWQ9IjEiCiAgICAgaW5rc2NhcGU6Y3VycmVudC1sYXllcj0ic3ZnMSIgLz4KICA8cGF0aAogICAgIGQ9Ik0gNjgwLC00OS4zMTkxNTEgNTEzLjI4LDUxLjE2MDg0OCBxIC0xMi42Nyw3Ljk1IC0yNi4zNSw2LjgzIC0xMy42NywtMS4xMiAtMjMuODYsLTkuMDcgLTEwLjIsLTcuOTYgLTE1LjgsLTIwLjAxIC01LjYsLTEyLjA1OTk5OSAtMi4xMiwtMjYuNzI5OTk5IGwgNDQuMjQsLTE4OS43MTk5OTkgLTE0Ny43MiwtMTI3LjcyIHEgLTExLjQzLC0xMC4xOSAtMTQuMjksLTIzLjI1IC0yLjg2LC0xMy4wNSAxLjM4LC0yNS40OSA0LjI0LC0xMi40MyAxMy43OSwtMjAuNjMgOS41NiwtOC4xOSAyNS4yMywtMTAuMTkgbCAxOTQuNzIsLTE3IDc1LjQ4LC0xNzguOTYgcSA1LjcyLC0xMy45MSAxNy41MywtMjAuNjMgMTEuODIsLTYuNzIgMjQuNDksLTYuNzIgMTIuNjcsMCAyNC40OSw2LjcyIDExLjgxLDYuNzIgMTcuNTMsMjAuNjMgbCA3NS40OCwxNzguOTYgMTk0LjcyLDE3IHEgMTUuNjcsMiAyNS4yMywxMC4xOSA5LjU1LDguMiAxMy43OSwyMC42MyA0LjI0LDEyLjQ0IDEuMzgsMjUuNDkgLTIuODYsMTMuMDYgLTE0LjI5LDIzLjI1IGwgLTE0Ny43MiwxMjcuNzIgNDQuMjQsMTg5LjcxOTk5OSBxIDMuNDgsMTQuNjcgLTIuMTIsMjYuNzI5OTk5IC01LjYsMTIuMDUgLTE1LjgsMjAuMDEwMDAxIC0xMC4xOSw3Ljk0OTk5OSAtMjMuODYsOS4wNjk5OTkgLTEzLjY4LDEuMTIgLTI2LjM1LC02LjgzIHoiCiAgICAgaWQ9InBhdGgxIiAvPgo8L3N2Zz4K");
+    mask-size: cover;
+    opacity: .3;
+}
+
+.gallery-preview-missing-image:nth-child(2n+1) {
+    opacity: .6;
+}
+
+/* album default image */
+img[src="https://lastfm.freetls.fastly.net/i/u/300x300/c6f59c1e5e7240a4c0d427abd71f3dbb.jpg"] {
+    mask-image: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhLS0gQ3JlYXRlZCB3aXRoIElua3NjYXBlIChodHRwOi8vd3d3Lmlua3NjYXBlLm9yZy8pIC0tPgoKPHN2ZwogICB3aWR0aD0iNzkuMzc1bW0iCiAgIGhlaWdodD0iNzkuMzc1bW0iCiAgIHZpZXdCb3g9IjAgMCA3OS4zNzUgNzkuMzc1IgogICB2ZXJzaW9uPSIxLjEiCiAgIGlkPSJzdmcxIgogICB4bWw6c3BhY2U9InByZXNlcnZlIgogICBzb2RpcG9kaTpkb2NuYW1lPSJkcmF3aW5nLnN2ZyIKICAgaW5rc2NhcGU6dmVyc2lvbj0iMS40ICg4NmE4YWQ3LCAyMDI0LTEwLTExKSIKICAgeG1sbnM6aW5rc2NhcGU9Imh0dHA6Ly93d3cuaW5rc2NhcGUub3JnL25hbWVzcGFjZXMvaW5rc2NhcGUiCiAgIHhtbG5zOnNvZGlwb2RpPSJodHRwOi8vc29kaXBvZGkuc291cmNlZm9yZ2UubmV0L0RURC9zb2RpcG9kaS0wLmR0ZCIKICAgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIgogICB4bWxuczpzdmc9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48c29kaXBvZGk6bmFtZWR2aWV3CiAgICAgaWQ9Im5hbWVkdmlldzEiCiAgICAgcGFnZWNvbG9yPSIjZmZmZmZmIgogICAgIGJvcmRlcmNvbG9yPSIjMDAwMDAwIgogICAgIGJvcmRlcm9wYWNpdHk9IjAuMjUiCiAgICAgaW5rc2NhcGU6c2hvd3BhZ2VzaGFkb3c9IjIiCiAgICAgaW5rc2NhcGU6cGFnZW9wYWNpdHk9IjAuMCIKICAgICBpbmtzY2FwZTpwYWdlY2hlY2tlcmJvYXJkPSIwIgogICAgIGlua3NjYXBlOmRlc2tjb2xvcj0iI2QxZDFkMSIKICAgICBpbmtzY2FwZTpkb2N1bWVudC11bml0cz0ibW0iCiAgICAgaW5rc2NhcGU6em9vbT0iMS40MTQyMTM2IgogICAgIGlua3NjYXBlOmN4PSIxMjUuODY1MDEiCiAgICAgaW5rc2NhcGU6Y3k9IjkyLjk4NDU0MSIKICAgICBpbmtzY2FwZTp3aW5kb3ctd2lkdGg9IjE5MjAiCiAgICAgaW5rc2NhcGU6d2luZG93LWhlaWdodD0iMTAwMSIKICAgICBpbmtzY2FwZTp3aW5kb3cteD0iLTkiCiAgICAgaW5rc2NhcGU6d2luZG93LXk9Ii05IgogICAgIGlua3NjYXBlOndpbmRvdy1tYXhpbWl6ZWQ9IjEiCiAgICAgaW5rc2NhcGU6Y3VycmVudC1sYXllcj0ic3ZnMSIgLz48ZGVmcwogICAgIGlkPSJkZWZzMSI+PGNsaXBQYXRoCiAgICAgICBjbGlwUGF0aFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIKICAgICAgIGlkPSJjbGlwUGF0aDEwIj48Y2lyY2xlCiAgICAgICAgIHN0eWxlPSJkaXNwbGF5OmlubGluZTtmaWxsOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjAuMTQ5OTYxIgogICAgICAgICBpZD0iY2lyY2xlMTAiCiAgICAgICAgIGN4PSIzOS43MDQ5ODMiCiAgICAgICAgIGN5PSIzOS42ODE1MTkiCiAgICAgICAgIHI9IjI1LjA3NDc0OSIgLz48L2NsaXBQYXRoPjwvZGVmcz48cmVjdAogICAgIHN0eWxlPSJmaWxsOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjAuMTA2Njg2IgogICAgIGlkPSJyZWN0NCIKICAgICB3aWR0aD0iNzkuMzc0NjE5IgogICAgIGhlaWdodD0iNzkuMzc0NjE5IgogICAgIHg9IjAiCiAgICAgeT0iLTEuMTI3OTgxMmUtMTQiCiAgICAgY2xpcC1wYXRoPSJ1cmwoI2NsaXBQYXRoMTApIiAvPjwvc3ZnPgo=");
+    mask-size: cover;
+    opacity: .3;
+}
+
+/* album small default image */
+img[src="https://lastfm.freetls.fastly.net/i/u/64s/c6f59c1e5e7240a4c0d427abd71f3dbb.jpg"] {
+    mask-image: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjxzdmcKICAgd2lkdGg9IjIwIgogICBoZWlnaHQ9IjIwIgogICB2aWV3Qm94PSIwIDAgMjAgMjAiCiAgIGZpbGw9Im5vbmUiCiAgIHZlcnNpb249IjEuMSIKICAgaWQ9InN2ZzIiCiAgIHNvZGlwb2RpOmRvY25hbWU9IlJlY29yZCBDaXJjbGUuc3ZnIgogICBpbmtzY2FwZTp2ZXJzaW9uPSIxLjQgKDg2YThhZDcsIDIwMjQtMTAtMTEpIgogICB4bWxuczppbmtzY2FwZT0iaHR0cDovL3d3dy5pbmtzY2FwZS5vcmcvbmFtZXNwYWNlcy9pbmtzY2FwZSIKICAgeG1sbnM6c29kaXBvZGk9Imh0dHA6Ly9zb2RpcG9kaS5zb3VyY2Vmb3JnZS5uZXQvRFREL3NvZGlwb2RpLTAuZHRkIgogICB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCiAgIHhtbG5zOnN2Zz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxkZWZzCiAgICAgaWQ9ImRlZnMyIiAvPgogIDxzb2RpcG9kaTpuYW1lZHZpZXcKICAgICBpZD0ibmFtZWR2aWV3MiIKICAgICBwYWdlY29sb3I9IiNmZmZmZmYiCiAgICAgYm9yZGVyY29sb3I9IiMwMDAwMDAiCiAgICAgYm9yZGVyb3BhY2l0eT0iMC4yNSIKICAgICBpbmtzY2FwZTpzaG93cGFnZXNoYWRvdz0iMiIKICAgICBpbmtzY2FwZTpwYWdlb3BhY2l0eT0iMC4wIgogICAgIGlua3NjYXBlOnBhZ2VjaGVja2VyYm9hcmQ9IjAiCiAgICAgaW5rc2NhcGU6ZGVza2NvbG9yPSIjZDFkMWQxIgogICAgIGlua3NjYXBlOnpvb209IjMyLjYyNSIKICAgICBpbmtzY2FwZTpjeD0iMTAuMDIyOTg5IgogICAgIGlua3NjYXBlOmN5PSIxMC4wMDc2NjMiCiAgICAgaW5rc2NhcGU6d2luZG93LXdpZHRoPSIxOTIwIgogICAgIGlua3NjYXBlOndpbmRvdy1oZWlnaHQ9IjEwMDEiCiAgICAgaW5rc2NhcGU6d2luZG93LXg9Ii05IgogICAgIGlua3NjYXBlOndpbmRvdy15PSItOSIKICAgICBpbmtzY2FwZTp3aW5kb3ctbWF4aW1pemVkPSIxIgogICAgIGlua3NjYXBlOmN1cnJlbnQtbGF5ZXI9InN2ZzIiIC8+CiAgPHBhdGgKICAgICBkPSJtIDYuNzUsMTAgYyAwLC0xLjc5NDkgMS40NTUxLC0zLjI1IDMuMjUsLTMuMjUgMS43OTQ5LDAgMy4yNSwxLjQ1NTEgMy4yNSwzLjI1IDAsMS43OTQ5IC0xLjQ1NTEsMy4yNSAtMy4yNSwzLjI1IC0xLjc5NDksMCAtMy4yNSwtMS40NTUxIC0zLjI1LC0zLjI1IHoiCiAgICAgZmlsbD0iIzJkMmQyZCIKICAgICBpZD0icGF0aDEiIC8+CiAgPHBhdGgKICAgICBmaWxsLXJ1bGU9ImV2ZW5vZGQiCiAgICAgY2xpcC1ydWxlPSJldmVub2RkIgogICAgIGQ9Ik0gMTAsMjAgQyAxNS41MjI4LDIwIDIwLDE1LjUyMjggMjAsMTAgMjAsNC40NzcxNSAxNS41MjI4LDAgMTAsMCA0LjQ3NzE1LDAgMCw0LjQ3NzE1IDAsMTAgMCwxNS41MjI4IDQuNDc3MTUsMjAgMTAsMjAgWiBNIDEwLDUuMjUgYyAtMi42MjMzNSwwIC00Ljc1LDIuMTI2NjUgLTQuNzUsNC43NSAwLDIuNjIzNCAyLjEyNjY1LDQuNzUgNC43NSw0Ljc1IDIuNjIzNCwwIDQuNzUsLTIuMTI2NiA0Ljc1LC00Ljc1IDAsLTIuNjIzMzUgLTIuMTI2NiwtNC43NSAtNC43NSwtNC43NSB6IgogICAgIGZpbGw9IiMyZDJkMmQiCiAgICAgaWQ9InBhdGgyIiAvPgo8L3N2Zz4K");
+    mask-size: cover;
+    scale: 70%;
+}
+
+if customTitles {
+    .about-me-sidebar p {
+        margin-top: 32px unless horizontalProfile;
+    }
+
+    #recent-tracks-section>h2:nth-child(1),
+    .about-me-sidebar>h2:nth-child(1) {
+        margin-top: unset;
+    }
+
+    .anhv1:not(:is([class*="namespace--settings"])) .col-main h2:not(.footer-heading, .share-heading, .date-heading, .metadata-title) {
+        font-family: Barlow Semi Condensed, Barlow, Helvetica Neue, Helvetica, Arial, sans-serif;
+        color: fgColor;
+        margin-top: 70px;
+        margin-bottom: 10px;
+        font-size: 24px;
+        font-weight: 700;
+        line-height: 30px;
+        line-height: 42px;
+        text-decoration: underline;
+        text-transform: uppercase;
+        text-underline-offset: 17px;
+
+        &~.buffer-standard {
+            margin-top: 32px;
+        }
+
+        &~p {
+            margin-top: 32px;
+        }
+
+        &~a:first-child:not(.section-settings-toggle) {
+            margin-top: 32px;
+        }
+
+        &~.shout-form {
+            margin-top: 32px;
+        }
+
+        &~.listening-report-promo--week {
+            margin-top: 32px;
+        }
+    }
+
+    .anhv1:not(:is([class*="namespace--settings"])) .col-sidebar h2:not(.footer-heading, .share-heading) {
+        font-family: Barlow Semi Condensed, Barlow, Helvetica Neue, Helvetica, Arial, sans-serif;
+        color: fgColor;
+        font-size: 18px;
+        font-weight: 700;
+        line-height: 24px;
+        text-transform: uppercase;
+    }
+
+    .about-me-sidebar>h2:nth-child(1) {
+        margin-top: 10px
+    }
+
+    .share-chart .share-button-profile,
+    .dropdown-menu-clickable-button.section-control,
+    .section-control,
+    .section-settings-toggle {
+        top: 5px
+    }
+
+    .labs-cta .labs-logo {
+        color: fgColor
+    }
+}
+
+if customButtons {
+    if animateButtons {
+        .promo-v3 .listening-report-promo {
+            transition: border .18s ease;
+
+            &:hover,
+            :focus,
+            :active {
+                border-left: 20px solid var(--borderLight);
             }
 
-            &~p {
-                margin-top: 32px;
-            }
-
-            &~a:first-child:not(.section-settings-toggle) {
-                margin-top: 32px;
-            }
-
-            &~.shout-form {
-                margin-top: 32px;
-            }
-
-            &~.listening-report-promo--week {
-                margin-top: 32px;
-            }
-        }
-
-        .anhv1:not(:is([class*="namespace--settings"])) .col-sidebar h2:not(.footer-heading, .share-heading) {
-            font-family: Barlow Semi Condensed, Barlow, Helvetica Neue, Helvetica, Arial, sans-serif;
-            color: fgColor;
-            font-size: 18px;
-            font-weight: 700;
-            line-height: 24px;
-            text-transform: uppercase;
-        }
-
-        .about-me-sidebar>h2:nth-child(1) {
-            margin-top: 10px
-        }
-
-        .share-chart .share-button-profile,
-        .dropdown-menu-clickable-button.section-control,
-        .section-control,
-        .section-settings-toggle {
-            top: 5px
-        }
-
-        .labs-cta .labs-logo {
-            color: fgColor
-        }
-    }
-
-    if customButtons {
-        if animateButtons {
-            .promo-v3 .listening-report-promo {
-                transition: border .18s ease;
+            if coloredButtons {
 
                 &:hover,
                 :focus,
                 :active {
-                    border-left: 20px solid var(--borderLight);
-                }
-
-                if coloredButtons {
-
-                    &:hover,
-                    :focus,
-                    :active {
-                        border-left: 20px solid #0003 unless onlyBorders;
-                    }
+                    border-left: 20px solid #0003 unless onlyBorders;
                 }
             }
+        }
 
-            .catalogue-tags .tag a:is([href*="/tag/"]),
-            .tags-add {
-                transition: .07s ease !important;
-                box-shadow: none !important;
-                border: 1px solid rgba(43, 101, 217, .6) !important;
+        :is(ol:not(.grid-items) p:not(.more-link), .tags-list) a[href^="/tag/"] {
+            color: tagColor !important if tagsLink
+        }
 
-                &:hover,
-                :focus,
-                :active {
-                    transform: translateY(-4px);
-                    box-shadow: 0 4px 0 0 #2b65d9 !important;
-                }
+        .tags-view-all {
+            color: tagColor
+        }
+
+        .catalogue-tags .tag a:is([href*="/tag/"]),
+        .tags-add {
+            color: tagColor !important;
+            transition: .07s ease !important;
+            box-shadow: none !important;
+            border: 1px solid tagColor !important;
+
+            &:hover,
+            :focus,
+            :active {
+                transform: translateY(-4px);
+                box-shadow: 0 4px 0 0 tagColor !important;
+                color: tagColor !important;
+            }
+        }
+
+        @keyframes slide {
+            from {
+                width: 0;
             }
 
-            @keyframes slide {
-                from {
-                    width: 0;
-                }
-
-                to {
-                    width: calc(100% - 20px);
-                }
-            }
-
-            [aria-label="Secondary navigation"] a.secondary-nav-item-link:not(.secondary-nav-item-link--active)::after {
-                content: "";
-                position: absolute;
-                transition: width .25s;
-                width: 0px;
-                height: 5px;
-                background-color: #d92323;
-                left: 10px;
-                right: 10px;
-                bottom: -5px;
-            }
-
-            body.catalogue-subpage {
-                [aria-label="Secondary navigation"] a.secondary-nav-item-link:not(.secondary-nav-item-link--active)::after {
-                    height: 5px !important;
-                    background-color: white;
-                }
-            }
-
-            [class^="homefeed"] .content-top .secondary-nav-item--overview .secondary-nav-item-link::after {
-                height: 5px !important;
-                bottom: -4px !important;
-            }
-
-            [class^="homefeed"] .content-top .secondary-nav-item--artists .secondary-nav-item-link::after {
-                height: 5px !important;
-                bottom: -4px !important;
-                background-color: #f90 !important;
-            }
-
-            [class^="homefeed"] .content-top .secondary-nav-item--albums .secondary-nav-item-link::after {
-                height: 5px !important;
-                bottom: -4px !important;
-                background-color: #096 !important;
-            }
-
-            [class^="homefeed"] .content-top .secondary-nav-item--tracks .secondary-nav-item-link::after {
-                height: 5px !important;
-                background-color: #06f !important;
-            }
-
-            [class^="homefeed"] .content-top .secondary-nav-item--events .secondary-nav-item-link::after {
-                height: 5px !important;
-                bottom: -4px !important;
-                background-color: #90f !important;
-            }
-
-            [aria-label="Secondary navigation"] .secondary-nav-item-link::after,
-            [aria-label="Secondary navigation"] a.secondary-nav-item-link:focus::after,
-            [aria-label="Secondary navigation"] a.secondary-nav-item-link:hover::after {
+            to {
                 width: calc(100% - 20px);
             }
         }
 
-        if coloredButtons {
+        [aria-label="Secondary navigation"] a.secondary-nav-item-link:not(.secondary-nav-item-link--active)::after {
+            content: "";
+            position: absolute;
+            transition: width .25s;
+            width: 0px;
+            height: 5px;
+            background-color: accentColor;
+            left: 10px;
+            right: 10px;
+            bottom: -5px;
+        }
 
-            if clipButtons {
-                .promo-v3 .listening-report-promo {
-                    clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 0 100%);
-                }
+        body.catalogue-subpage {
+            [aria-label="Secondary navigation"] a.secondary-nav-item-link:not(.secondary-nav-item-link--active)::after {
+                height: 5px !important;
+                background-color: white;
             }
+        }
 
-            if hatchingMotif {
-                .promo-v3 .listening-report-promo {
-                    background-image: url("/static/images/listening-report/v3/bg-lines.73682e46b8be.svg");
-                    background-position: 0 200%;
-                    background-repeat: repeat-x;
-                }
-            }
+        [class^="homefeed"] .content-top .secondary-nav-item--overview .secondary-nav-item-link::after {
+            height: 5px !important;
+            bottom: -4px !important;
+        }
 
+        [class^="homefeed"] .content-top .secondary-nav-item--artists .secondary-nav-item-link::after {
+            height: 5px !important;
+            bottom: -4px !important;
+            background-color: #f90 !important;
+        }
+
+        [class^="homefeed"] .content-top .secondary-nav-item--albums .secondary-nav-item-link::after {
+            height: 5px !important;
+            bottom: -4px !important;
+            background-color: #096 !important;
+        }
+
+        [class^="homefeed"] .content-top .secondary-nav-item--tracks .secondary-nav-item-link::after {
+            height: 5px !important;
+            background-color: #06f !important;
+        }
+
+        [class^="homefeed"] .content-top .secondary-nav-item--events .secondary-nav-item-link::after {
+            height: 5px !important;
+            bottom: -4px !important;
+            background-color: #90f !important;
+        }
+
+        [aria-label="Secondary navigation"] .secondary-nav-item-link::after,
+        [aria-label="Secondary navigation"] a.secondary-nav-item-link:focus::after,
+        [aria-label="Secondary navigation"] a.secondary-nav-item-link:hover::after {
+            width: calc(100% - 20px);
+        }
+    }
+
+    if coloredButtons {
+
+        if clipButtons {
             .promo-v3 .listening-report-promo {
-                border-color: transparent;
-                color: fgColor !important unless onlyBorders;
+                clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 0 100%);
+            }
+        }
 
-                & span.listening-report-promo-title {
-                    color: var(--fgSubtle) unless onlyBorders
-                }
+        if hatchingMotif {
+            .promo-v3 .listening-report-promo {
+                background-image: url("/static/images/listening-report/v3/bg-lines.73682e46b8be.svg");
+                background-position: 0 200%;
+                background-repeat: repeat-x;
+            }
+        }
 
+        .promo-v3 .listening-report-promo {
+            border-color: transparent;
+            color: fgColor !important unless onlyBorders;
+
+            & span.listening-report-promo-title {
+                color: var(--fgSubtle) unless onlyBorders
             }
 
-            .promo-v3 .listening-report-promo--week {
-                background-color: #ffcace unless onlyBorders;
-                border-color: #ffcace if onlyBorders;
+        }
 
-                &:hover,
-                &:focus {
-                    background-color: #ffb9be unless onlyBorders;
-                    border-left: 20px solid #ffb9be if onlyBorders;
-                }
+        .promo-v3 .listening-report-promo--week {
+            background-color: #ffcace unless onlyBorders;
+            border-color: #ffcace if onlyBorders;
+
+            &:hover,
+            &:focus {
+                background-color: #ffb9be unless onlyBorders;
+                border-left: 20px solid #ffb9be if onlyBorders;
             }
+        }
 
-            .promo-v3 .listening-report-promo--month {
-                background-color: #51ffc5 unless onlyBorders;
-                border-color: #51ffc5 if onlyBorders;
+        .promo-v3 .listening-report-promo--month {
+            background-color: #51ffc5 unless onlyBorders;
+            border-color: #51ffc5 if onlyBorders;
 
-                &:hover,
-                &:focus {
-                    background-color: #30f3b2 unless onlyBorders;
-                    border-left: 20px solid #30f3b2 if onlyBorders;
-                }
+            &:hover,
+            &:focus {
+                background-color: #30f3b2 unless onlyBorders;
+                border-left: 20px solid #30f3b2 if onlyBorders;
             }
+        }
 
-            .promo-v3 .listening-report-promo--year {
-                background-color: #469df8 unless onlyBorders;
-                border-color: #469df8 if onlyBorders;
+        .promo-v3 .listening-report-promo--year {
+            background-color: #469df8 unless onlyBorders;
+            border-color: #469df8 if onlyBorders;
 
-                &:hover,
-                &:focus {
-                    background-color: #3593f6 unless onlyBorders;
-                    border-left: 20px solid #3593f6 if onlyBorders;
-                }
+            &:hover,
+            &:focus {
+                background-color: #3593f6 unless onlyBorders;
+                border-left: 20px solid #3593f6 if onlyBorders;
             }
         }
     }
+}
 }
 
 
@@ -844,9 +931,9 @@ body.anhv1.namespace--user_overview header:has(.avatar) {
 
 .avatar-shape,
 .auth-avatar-desktop,
-.header-avatar .avatar img,
+.header-avatar :not(.big-artist-list-wrap) .avatar img,
 .header-avatar .avatar::after,
-div:not(.content-teaser):not(:has(+ a[href*="/music/"]))>.avatar:not(.tasteometer-avatar) img,
+div:not(.content-teaser):not(:has(+ a[href*="/music/"]))>.avatar:not(.tasteometer-avatar, .big-artist-list-avatar-desktop) img,
 div:not(.content-teaser):not(:has(+ a[href*="/music/"]))>.avatar:not(.tasteometer-avatar)::after {
     border-radius: avatarRadius;
 }
