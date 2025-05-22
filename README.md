@@ -17,8 +17,8 @@ Everything is optional save for small changes to visual inconsistencies.
 - Screenshot mode that censors personal informations on profiles (see below)
 
 ## 🧪 To-do list
-- Add accent color
 - Add love button
+- Tweak stationlink buttons to allow theming
 
 ## 🖼️ Screenshots
 | ![profile](/previews/profile.png) | ![tweaks](/previews/tweaks.png) |
