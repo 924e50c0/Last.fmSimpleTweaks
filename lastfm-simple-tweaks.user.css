@@ -22,6 +22,7 @@
 @var checkbox   customButtons       " ↳ Use custom buttons" 1
 @var checkbox   animateButtons      "  ↳ Animations" 1
 @var checkbox   coloredButtons      "  ↳ Color Listening Report buttons" 0
+@var checkbox   invertText          "   ↳ Black text" 0
 @var checkbox   onlyBorders         "   ↳ Only borders" 0
 @var checkbox   clipButtons         "   ↳ Clip buttons" 0
 @var checkbox   hatchingMotif       "   ↳ Hatching" 0
@@ -862,12 +863,25 @@ if customButtons {
 
         .promo-v3 .listening-report-promo {
             border-color: transparent;
-            color: fgColor !important unless onlyBorders;
+            color: fgColor unless onlyBorders;
 
             & span.listening-report-promo-title {
                 color: var(--fgSubtle) unless onlyBorders
             }
 
+        }
+
+        if invertText {
+
+            .promo-v3 .listening-report-promo-date {
+                color: black !important;
+
+
+            }
+
+            .listening-report-promo-title {
+                color: #282828 !important
+            }
         }
 
         .promo-v3 .listening-report-promo--week {
