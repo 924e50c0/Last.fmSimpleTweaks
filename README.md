@@ -21,5 +21,11 @@ Everything is optional save for small changes to visual inconsistencies.
 - Tweak stationlink buttons to allow theming
 
 ## 🖼️ Screenshots
-| ![profile](/previews/profile.png) | ![tweaks](/previews/tweaks.png) |
-| --------------------------------- | ------------------------------- |
+| ![profile](/previews/profile.png)                       | ![tweaks](/previews/tweaks.png)             |
+| ------------------------------------------------------- | ------------------------------------------- |
+
+| ![theme tweaks 1](/previews/preview-theme-1-tweaks.png) | ![preview 1](/previews/preview-theme-1.png) |
+| ------------------------------------------------------- | ------------------------------------------- |
+
+| ![theme tweaks 2](/previews/preview-theme-2-tweaks.png) | ![preview 2](/previews/preview-theme-2.png) |
+| ------------------------------------------------------- | ------------------------------------------- |
