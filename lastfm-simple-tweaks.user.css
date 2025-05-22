@@ -545,6 +545,10 @@
         box-shadow: 0 3px 9px 0 var(--borderLight);
     }
 
+    .album-overview-cover-art {
+        box-shadow: 0 0 0 2px var(--borderLight);
+    }
+
     .music-recommended-artists-item-toggle {
         box-shadow: 0 0 0 2px var(--bgDark)
     }
@@ -780,12 +784,14 @@ if customButtons {
             color: tagColor !important if tagsLink
         }
 
-        .tags-view-all {
+        .tags-view-all,
+        .tags-add-cta {
             color: tagColor
         }
 
         .catalogue-tags .tag a:is([href*="/tag/"]),
-        .tags-add {
+        .tags-add,
+        .tags-add-cta {
             color: tagColor !important;
             transition: .07s ease !important;
             box-shadow: none !important;
@@ -2326,6 +2332,7 @@ if customIcons {
         background-color: black;
     }
 
+    .lyrics-snippet-more-link a::before,
     .trending-tracks-section .trending-tracks-more-link a::before,
     .more-link-with-action a:nth-child(n+2)::after,
     .btn-shortcut::before,
@@ -2557,6 +2564,7 @@ if customIcons {
     }
 
     .inline-add-icon::before,
+    .catalogue-tags .tags-add-cta::before,
     .catalogue-tags .tags-add::before,
     [data-toggle-button-current-state="unfollowed"] .user-list-follower-btn::before {
         background-image: unset;
