@@ -79,6 +79,7 @@
         .auth-dropdown-toggle,
         .grid-items-cover-image-image,
         .header .header-background,
+        .image-list-item,
         .cover-art {
             &::before {
                 content: "";
@@ -122,6 +123,13 @@
             z-index: 2;
         }
 
+        .tasteometer-avatar::before,
+        .artist-similar-artists-sidebar-item-image::before,
+        .catalogue-overview-similar-artists-full-width-item-image::before {
+            border-radius: 50%;
+        }
+
+        .stationlink.js-playlink-station,
         .featured-item-name,
         .featured-item-artist,
         .header-title-display-name,
@@ -299,8 +307,7 @@
         .recommended-next-button,
         .secondary-nav-item-link--active::after,
         a.secondary-nav-item-link:focus::after,
-        a.secondary-nav-item-link:hover::after,
-        .chartlist-count-bar-slug {
+        a.secondary-nav-item-link:hover::after {
             background-color: accentColor;
         }
 
@@ -336,6 +343,14 @@
             fill: transparentify(accentColor, accentColor, 20%)
         }
 
+        .listener-trend path.highcharts-area {
+            fill: transparentify(accentColor, accentColor, 20%)
+        }
+
+        #scrobble-chart-content .highcharts-color-0 {
+            fill: transparentify(accentColor, accentColor, 20%)
+        }
+
         .listener-trend path.highcharts-graph {
             stroke: accentColor
         }
@@ -345,9 +360,13 @@
             stroke: accentColor
         }
 
+        .chartlist-count-bar-slug {
+            background-color: transparentify(accentColor, accentColor, 30%)
+        }
+
         a:focus .chartlist-count-bar-slug,
         a:hover .chartlist-count-bar-slug {
-            background-color: var(--accentColor-hover);
+            background-color: transparentify(accentColor, accentColor, 50%)
         }
 
 
@@ -677,7 +696,7 @@ if customTitles {
         margin-top: unset;
     }
 
-    .anhv1:not(:is([class*="namespace--settings"])) .col-main h2:not(.footer-heading, .share-heading, .date-heading, .metadata-title) {
+    .anhv1:not(:is([class*="namespace--settings"], .namespace--user_library_music_artist_overview)) .col-main h2:not(.footer-heading, .share-heading, .date-heading, .metadata-title, .library-header-title) {
         font-family: Barlow Semi Condensed, Barlow, Helvetica Neue, Helvetica, Arial, sans-serif;
         color: fgColor;
         margin-top: 70px;
