@@ -27,8 +27,9 @@
 @var checkbox   clipButtons         "   ↳ Clip buttons" 0
 @var checkbox   hatchingMotif       "   ↳ Hatching" 0
 @var checkbox   fullWidth           "📏 Use full width 🧪" 0
+@var checkbox   includeProfile      " ↳ Include profile page" 0
 @var checkbox   customWidth         " ↳ Use custom width instead" 0
-@var number     customWidthValue   "  ↳ Value"[1230, 980, 2000, 5, 'px']
+@var number     customWidthValue    "  ↳ Value"[1230, 980, 2000, 5, 'px']
 @var checkbox   customIcons         "🖼️ Use custom icon set " 1
 @var checkbox   anonymousMode       "🥸 Screenshot mode" 0
 @var range      avatarRadius        "⚪ Avatar Radius" [5, 0, 50, 1, '%']
@@ -1086,7 +1087,7 @@ div:not(.content-teaser):not(:has(+ a[href*="/music/"]))>.avatar:not(.tasteomete
 }
 
 if fullWidth {
-    body:not(.anhv2.user-dashboard-layout) {
+    body:not(.anhv2.user-dashboard-layout, .anhv1[class*="namespace--user"]) {
 
         div.container.page-content,
         .header-new-content,
@@ -1151,6 +1152,77 @@ if fullWidth {
             .header-new-content,
             .header--user .container {
                 width: customWidthValue
+            }
+        }
+    }
+
+    if includeProfile {
+        body:not(.anhv2.user-dashboard-layout) {
+
+            div.container.page-content,
+            .header-new-content,
+            .header--user .container,
+            .col-main,
+            .container.content-top-lower {
+                width: unset
+            }
+
+            .header-inner-wrap {
+                display: grid;
+                grid-template-columns: auto 1fr;
+
+                & .header-info {
+                    width: unset !important;
+                }
+
+            }
+
+            .header--sub-page .header-inner-wrap {
+                display: unset
+            }
+
+            .metadata-and-wiki-row {
+                display: flex;
+                justify-content: space-between;
+
+                & .metadata-column {
+                    order: 2;
+                    width: 320px;
+                }
+
+                & .wiki-column {
+                    width: 66%
+                }
+            }
+
+            &.anhv2.namespace--music_album_overview {
+                div.container.page-content .row {
+                    display: grid;
+                    grid-template-columns: 2fr 1fr;
+
+                    .upper-overview {
+                        order: -1
+                    }
+                }
+            }
+
+            div.container.page-content .row {
+                display: grid;
+                grid-template-columns: 2fr 1fr;
+            }
+
+            .col-sidebar {
+                width: unset
+            }
+
+
+            if customWidth {
+
+                div.container.page-content,
+                .header-new-content,
+                .header--user .container {
+                    width: customWidthValue
+                }
             }
         }
     }
