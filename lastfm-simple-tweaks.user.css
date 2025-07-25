@@ -26,6 +26,9 @@
 @var checkbox   onlyBorders         "   ↳ Only borders" 0
 @var checkbox   clipButtons         "   ↳ Clip buttons" 0
 @var checkbox   hatchingMotif       "   ↳ Hatching" 0
+@var checkbox   fullWidth           "📏 Use full width 🧪" 0
+@var checkbox   customWidth         " ↳ Use custom width instead" 0
+@var number     customWidthValue   "  ↳ Value"[1230, 980, 2000, 5, 'px']
 @var checkbox   customIcons         "🖼️ Use custom icon set " 1
 @var checkbox   anonymousMode       "🥸 Screenshot mode" 0
 @var range      avatarRadius        "⚪ Avatar Radius" [5, 0, 50, 1, '%']
@@ -41,7 +44,7 @@
 @var checkbox   removeTrending      " ↳ Remove trending tracks" 1
 @var checkbox   removeLabs          " ↳ Remove profile Labs button" 1
 @var checkbox   removeFooter        " ↳ Remove footer" 0
-@var checkbox   fullWidth           "📏 Recommendations full width" 1
+@var checkbox   fullWidth-Recs           "📏 Recommendations full width" 1
 @var checkbox   removeSeparator     "❌ Remove section separator" 1
 @var checkbox   stickyProfile       "🪪 Sticky profile" 1
 @var checkbox   stickyCharts        "📊 Sticky library charts" 1
@@ -1082,6 +1085,58 @@ div:not(.content-teaser):not(:has(+ a[href*="/music/"]))>.avatar:not(.tasteomete
     border-radius: avatarRadius * 2 !important;
 }
 
+if fullWidth {
+
+    div.container.page-content,
+    .header-new-content,
+    .header--user .container,
+    .col-main {
+        width: unset
+    }
+
+    .header-inner-wrap {
+        display: grid;
+        grid-template-columns: auto 1fr;
+
+        & .header-info {
+            width: unset !important;
+        }
+
+    }
+
+    .metadata-and-wiki-row {
+        display: flex;
+        justify-content: space-between;
+
+        & .metadata-column {
+            order: 2;
+            width: calc(100%/3)
+        }
+
+        & .wiki-column {
+            width: 66%
+        }
+    }
+
+    div.container.page-content .row {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+    }
+
+    .col-sidebar {
+        width: unset
+    }
+
+    if customWidth {
+
+        div.container.page-content,
+        .header-new-content,
+        .header--user .container {
+            width: customWidthValue
+        }
+    }
+}
+
 if followButton {
     if radiusBehaviour==adaptive {
         .header-follower-btn::before {
@@ -1267,7 +1322,7 @@ if removeFooter or removeUseless {
     }
 }
 
-if fullWidth {
+if fullWidth-Recs {
 
     /* last.fm/music/+recommended/artists */
     .col-main:has(.music-recommended-artists) {
