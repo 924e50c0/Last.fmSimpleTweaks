@@ -1086,65 +1086,72 @@ div:not(.content-teaser):not(:has(+ a[href*="/music/"]))>.avatar:not(.tasteomete
 }
 
 if fullWidth {
-
-    div.container.page-content,
-    .header-new-content,
-    .header--user .container,
-    .col-main {
-        width: unset
-    }
-
-    .header-inner-wrap {
-        display: grid;
-        grid-template-columns: auto 1fr;
-
-        & .header-info {
-            width: unset !important;
-        }
-
-    }
-
-    .metadata-and-wiki-row {
-        display: flex;
-        justify-content: space-between;
-
-        & .metadata-column {
-            order: 2;
-            width: 320px;
-        }
-
-        & .wiki-column {
-            width: 66%
-        }
-    }
-
-    body.anhv2.namespace--music_album_overview {
-        div.container.page-content .row {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-
-            .upper-overview {
-                order: -1
-            }
-        }
-    }
-
-    div.container.page-content .row {
-        display: grid;
-        grid-template-columns: 2fr 1fr;
-    }
-
-    .col-sidebar {
-        width: unset
-    }
-
-
-    if customWidth {
+    body:not(.anhv2.user-dashboard-layout) {
 
         div.container.page-content,
         .header-new-content,
-        .header--user .container {
-            width: customWidthValue
+        .header--user .container,
+        .col-main,
+        .container.content-top-lower {
+            width: unset
+        }
+
+        .header-inner-wrap {
+            display: grid;
+            grid-template-columns: auto 1fr;
+
+            & .header-info {
+                width: unset !important;
+            }
+
+        }
+
+        .header--sub-page .header-inner-wrap {
+            display: unset
+        }
+
+        .metadata-and-wiki-row {
+            display: flex;
+            justify-content: space-between;
+
+            & .metadata-column {
+                order: 2;
+                width: 320px;
+            }
+
+            & .wiki-column {
+                width: 66%
+            }
+        }
+
+        &.anhv2.namespace--music_album_overview {
+            div.container.page-content .row {
+                display: grid;
+                grid-template-columns: 2fr 1fr;
+
+                .upper-overview {
+                    order: -1
+                }
+            }
+        }
+
+        div.container.page-content .row {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+        }
+
+        .col-sidebar {
+            width: unset
+        }
+
+
+        if customWidth {
+
+            div.container.page-content,
+            .header-new-content,
+            .header--user .container {
+                width: customWidthValue
+            }
         }
     }
 }
