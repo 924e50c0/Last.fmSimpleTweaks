@@ -1110,11 +1110,22 @@ if fullWidth {
 
         & .metadata-column {
             order: 2;
-            width: calc(100%/3)
+            width: 320px;
         }
 
         & .wiki-column {
             width: 66%
+        }
+    }
+
+    body.anhv2.namespace--music_album_overview {
+        div.container.page-content .row {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+
+            .upper-overview {
+                order: -1
+            }
         }
     }
 
@@ -1126,6 +1137,7 @@ if fullWidth {
     .col-sidebar {
         width: unset
     }
+
 
     if customWidth {
 
