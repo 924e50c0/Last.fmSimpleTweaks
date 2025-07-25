@@ -18,6 +18,8 @@ Everything is optional save for small changes to visual inconsistencies.
 
 ## 🧪 To-do list
 - Custom font
+- Control gap length between sections
+- Left aligned sidebar
 
 ## 🖼️ Screenshots
 | ![profile](/previews/profile.png)                       | ![tweaks](/previews/tweaks.png)             |
