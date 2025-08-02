@@ -2,7 +2,7 @@
 @name           Last.fm Simple Tweaks
 @namespace      https://github.com/924e50c0
 @author         924e50c0
-@version        0.1.0
+@version        0.1.1
 @description    A collection of simple tweaks for last.fm.
 
 @preprocessor   stylus
@@ -45,7 +45,7 @@
 @var checkbox   removeTrending      " ↳ Remove trending tracks" 1
 @var checkbox   removeLabs          " ↳ Remove profile Labs button" 1
 @var checkbox   removeFooter        " ↳ Remove footer" 0
-@var checkbox   fullWidth-Recs           "📏 Recommendations full width" 1
+@var checkbox   fullWidth-Recs      "📏 Recommendations full width" 1
 @var checkbox   removeSeparator     "❌ Remove section separator" 1
 @var checkbox   stickyProfile       "🪪 Sticky profile" 1
 @var checkbox   stickyCharts        "📊 Sticky library charts" 1
@@ -1139,6 +1139,19 @@ if fullWidth {
         div.container.page-content .row {
             display: grid;
             grid-template-columns: 2fr 1fr;
+        }
+
+        div.container.page-content .row.buffer-4 {
+            display: flex;
+            flex-wrap: wrap;
+
+            & .col-main {
+                width: 66%
+            }
+
+            & .col-sidebar {
+                flex-grow: 1;
+            }
         }
 
         .col-sidebar {
