@@ -2,7 +2,7 @@
 @name           Last.fm Simple Tweaks
 @namespace      https://github.com/924e50c0
 @author         924e50c0
-@version        0.1.1
+@version        0.1.2
 @description    A collection of simple tweaks for last.fm.
 
 @preprocessor   stylus
@@ -27,7 +27,7 @@
 @var checkbox   clipButtons         "   ↳ Clip buttons" 0
 @var checkbox   hatchingMotif       "   ↳ Hatching" 0
 @var checkbox   fullWidth           "📏 Use full width 🧪" 0
-@var checkbox   includeProfile      " ↳ Include profile page" 0
+@var checkbox   includeProfile      " ↳ Include profile page" 1
 @var checkbox   customWidth         " ↳ Use custom width instead" 0
 @var number     customWidthValue    "  ↳ Value"[1230, 980, 2000, 5, 'px']
 @var checkbox   customIcons         "🖼️ Use custom icon set " 1
@@ -1170,6 +1170,16 @@ if fullWidth {
     }
 
     if includeProfile {
+        .grid-items-item {
+            width: 25%;
+            height: auto;
+            aspect-ratio: 1/1
+        }
+        .grid-items--big-first .grid-items-item--big {
+            width: 50%;
+            height: auto;
+            aspect-ratio: 1/1
+        }
         body:not(.anhv2.user-dashboard-layout) {
 
             div.container.page-content,
