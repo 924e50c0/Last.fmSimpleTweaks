@@ -17,9 +17,14 @@ Everything is optional save for small changes to visual inconsistencies.
 - Screenshot mode that censors personal informations on profiles (see below)
 
 ## 🧪 To-do list
+### Features
 - Custom font
 - Control gap length between sections
 - Left aligned sidebar
+- Squared theme
+
+### Fixes
+- Allow for individual button animation toggle
 
 ## 🖼️ Screenshots
 | ![profile](/previews/profile.png)                       | ![tweaks](/previews/tweaks.png)             |
@@ -30,3 +35,8 @@ Everything is optional save for small changes to visual inconsistencies.
 
 | ![theme tweaks 2](/previews/preview-theme-2-tweaks.png) | ![preview 2](/previews/preview-theme-2.png) |
 | ------------------------------------------------------- | ------------------------------------------- |
+
+## 📃 Changelog
+- 08.08.2025 / v0.1.2 - Fixed full width breaking charts on profile pages
+- 02.08.2025 / v0.1.1 - Fixed full width breaking song pages
+- 25.07.2025 / v0.1.0 - Added new full width experimental feature
