@@ -37,6 +37,7 @@ Everything is optional save for small changes to visual inconsistencies.
 | ------------------------------------------------------- | ------------------------------------------- |
 
 ## 📃 Changelog
+- 31.08.2025 / v0.1.3 - Fixed full width breaking empty album pages
 - 08.08.2025 / v0.1.2 - Fixed full width breaking charts on profile pages
 - 02.08.2025 / v0.1.1 - Fixed full width breaking song pages
 - 25.07.2025 / v0.1.0 - Added new full width experimental feature
