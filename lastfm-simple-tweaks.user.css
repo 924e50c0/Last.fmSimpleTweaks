@@ -2,10 +2,10 @@
 @name           Last.fm Simple Tweaks
 @namespace      https://github.com/924e50c0
 @author         924e50c0
-@version        0.1.2
+@version        0.1.3
 @description    A collection of simple tweaks for last.fm.
 
-@preprocessor   stylus
+moz-extension://dc4731b8-6f5d-4f4e-9445-10c5902b2a6a/edit.html?id=587@preprocessor   stylus
 
 @var checkbox   customTheme         "🎨 Custom theme" 1
 @var select     selectMode          " ↳ is"  {"Dark":"isdark", "Light":"islight"}
@@ -1228,7 +1228,7 @@ if fullWidth {
                     }
                 }
             }
-
+            
             div.container.page-content .row {
                 display: grid;
                 grid-template-columns: 2fr 1fr;
@@ -1246,6 +1246,14 @@ if fullWidth {
                 .header--user .container {
                     width: customWidthValue
                 }
+            }
+            /* empty album page fix */
+            div.col-main:nth-child(3).hidden-xs {
+               /* fixes some pages with empty albums? */
+               order: -1
+            }
+            .row--equal-height-cols:has(div[class*="wiki-icon"]) {
+               display: flex !important
             }
         }
     }
