@@ -5,7 +5,7 @@
 @version        0.1.3
 @description    A collection of simple tweaks for last.fm.
 
-moz-extension://dc4731b8-6f5d-4f4e-9445-10c5902b2a6a/edit.html?id=587@preprocessor   stylus
+@preprocessor   stylus
 
 @var checkbox   customTheme         "🎨 Custom theme" 1
 @var select     selectMode          " ↳ is"  {"Dark":"isdark", "Light":"islight"}
