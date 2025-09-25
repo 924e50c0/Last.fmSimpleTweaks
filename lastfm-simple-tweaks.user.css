@@ -2,7 +2,7 @@
 @name           Last.fm Simple Tweaks
 @namespace      https://github.com/924e50c0
 @author         924e50c0
-@version        0.1.3
+@version        0.1.4
 @description    A collection of simple tweaks for last.fm.
 
 @preprocessor   stylus
@@ -21,6 +21,8 @@
 @var checkbox   customTitles        " ↳ Use custom titles" 1
 @var checkbox   customButtons       " ↳ Use custom buttons" 1
 @var checkbox   animateButtons      "  ↳ Animations" 1
+@var checkbox   animateTags         "   ↳ Tags" 1
+@var checkbox   animateReport       "   ↳ Listening Report" 0
 @var checkbox   coloredButtons      "  ↳ Color Listening Report buttons" 0
 @var checkbox   invertText          "   ↳ Black text" 0
 @var checkbox   onlyBorders         "   ↳ Only borders" 0
@@ -879,35 +881,38 @@
 
     if customButtons {
         if animateButtons {
-            .promo-v3 .listening-report-promo {
-                transition: border .18s ease;
-
-                &:hover,
-                :focus,
-                :active {
-                    border-left: 20px solid var(--borderLight);
-                }
-
-                if coloredButtons {
+            if animateReport {
+                .promo-v3 .listening-report-promo {
+                    transition: border .18s ease;
 
                     &:hover,
                     :focus,
                     :active {
-                        border-left: 20px solid #0003 unless onlyBorders;
+                        border-left: 20px solid var(--borderLight);
+                    }
+
+                    if coloredButtons {
+
+                        &:hover,
+                        :focus,
+                        :active {
+                            border-left: 20px solid #0003 unless onlyBorders;
+                        }
                     }
                 }
             }
+            if animateTags {
+                .catalogue-tags .tag a:is([href*="/tag/"]),
+                .tags-add,
+                .tags-add-cta {
+                    transition: .07s ease !important;
 
-            .catalogue-tags .tag a:is([href*="/tag/"]),
-            .tags-add,
-            .tags-add-cta {
-                transition: .07s ease !important;
-
-                &:hover,
-                :focus,
-                :active {
-                    transform: translateY(-4px);
-                    box-shadow: 0 4px 0 0 tagColor !important;
+                    &:hover,
+                    :focus,
+                    :active {
+                        transform: translateY(-4px);
+                        box-shadow: 0 4px 0 0 tagColor !important;
+                    }
                 }
             }
 
