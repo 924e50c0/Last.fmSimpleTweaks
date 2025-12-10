@@ -458,7 +458,7 @@
         .footer {
             background: var(--bgDark)
         }
-
+        
         .chartlist-row:hover,
         .section-with-separator::after,
         .promo-v3 .listening-report-promo:focus,
@@ -501,18 +501,22 @@
                 background: var(--bgSubtle-hover)
             }
         }
-
+      
         table.table tr:nth-child(2n) td,
         .grid-items-empty-inner,
         .wiki-style-rules {
             background: var(--bgSubtle)
         }
-
+        
         .chartlist-row--highlight,
         .chartlist-row--now-scrobbling,
         .change-username-upsell,
         .music-section-rediscover-subscribe-banner-cta {
             background: var(--bgLight)
+        }
+        
+        .gallery-upload-rules {
+          background-color: mix(bgColor, linkColor, 90%);
         }
 
         .alert-warning {
