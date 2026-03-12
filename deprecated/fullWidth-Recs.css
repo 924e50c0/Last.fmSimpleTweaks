@@ -1,0 +1,156 @@
+/*
+@var checkbox   fullWidth-Recs      "⯈ Recommendations full width" 1
+*/
+
+if fullWidth-Recs {
+
+    /* last.fm/music/+recommended/artists */
+    .col-main:has(.music-recommended-artists) {
+        @media (min-width: 768px) and (min-width: 768px) {
+            & {
+                width: 960px;
+            }
+        }
+
+        @media (min-width: 1260px) and (min-width: 1260px) {
+            & {
+                width: 1200px;
+            }
+        }
+
+        & .music-recommended-artists {
+            display: flex;
+            flex-wrap: wrap;
+
+            & .music-recommended-artists-artist {
+                display: grid;
+                align-content: baseline;
+            }
+
+            & :nth-child(6) {
+                margin: 0;
+            }
+
+            & :nth-child(7) {
+                margin: 0;
+            }
+
+            & .factbox-summary+.music-recommended-artists-context,
+            .music-recommended-artists-artist-stats+.music-recommended-artists-context {
+                margin-top: 12px;
+            }
+        }
+    }
+
+    /* last.fm/music/+recommended/albums */
+    .col-main:has(.music-recommended-albums) {
+        @media (min-width: 768px) and (min-width: 768px) {
+            & {
+                width: 960px;
+            }
+        }
+
+        @media (min-width: 1260px) and (min-width: 1260px) {
+            & {
+                width: 1200px;
+            }
+        }
+
+        & .music-recommended-albums {
+            & .music-recommended-albums-item-wrap {
+                width: 20%;
+
+                &:nth-child(6) {
+                    margin: 0;
+                }
+            }
+        }
+    }
+
+    /* last.fm/music/+recommended/tracks */
+    .col-main:has(.recommended-tracks) {
+        @media (min-width: 768px) and (min-width: 768px) {
+            & {
+                width: 960px;
+            }
+        }
+
+        @media (min-width: 1260px) and (min-width: 1260px) {
+            & {
+                width: 1200px;
+            }
+        }
+
+        & .recommended-tracks {
+            display: flex;
+            flex-wrap: wrap;
+
+            & .recommended-tracks-item-wrap:nth-child(3) {
+                margin: 0;
+            }
+        }
+    }
+
+    /* last.fm/music/+recommended/tags */
+    .col-main:has(.big-tags--with-20) {
+        @media (min-width: 768px) and (min-width: 768px) {
+            & {
+                width: 960px;
+            }
+        }
+
+        @media (min-width: 1260px) and (min-width: 1260px) {
+            & {
+                width: 1200px;
+            }
+        }
+
+        & .big-tags--with-20 {
+            & .big-tags-item-wrap {
+                width: 20%;
+
+                &:nth-child(6) {
+                    margin: 0;
+                }
+            }
+        }
+    }
+
+    if removeAds and removePlay {
+        .col-main:has(.recs-feed) {
+            @media (min-width: 768px) and (min-width: 768px) {
+                & {
+                    width: 960px;
+                }
+            }
+
+            @media (min-width: 1260px) and (min-width: 1260px) {
+                & {
+                    width: 1200px;
+                }
+            }
+
+            & .recs-feed-item {
+                @media (min-width: 768px) and (min-width: 768px) {
+                    & {
+                        width: calc(960px / 5);
+                    }
+                }
+
+                @media (min-width: 1260px) and (min-width: 1260px) {
+                    & {
+                        width: calc(1200px / 5);
+                    }
+                }
+            }
+
+            & :nth-child(5) {
+                margin-top: 0;
+            }
+
+            & :nth-child(6) {
+                margin-top: 0;
+            }
+        }
+    }
+}

@@ -1,0 +1,423 @@
+/*
+@var checkbox   stickyShoutbox      " ↳ Sticky shoutbox" 0
+@var number     maxSize             "  ├ Max size" [85, 0, 100, 1, 'vh']
+@var checkbox   alignTop            "  ├ Align top" 0
+*/
+if stickyShoutbox {
+    if horizontalProfile {
+
+        .col-main:has(#recent-tracks-section) {
+            &:has(#shoutbox) {
+                width: 100%;
+                display: grid;
+                grid-template-areas: "a b" "a b" "a b" "a b" "a b";
+                justify-content: space-between;
+
+                &>*:not(#shoutbox) {
+
+                    @media (min-width: 768px) and (min-width: 768px) {
+                        & {
+                            width: 620px;
+                        }
+                    }
+
+                    @media (min-width: 1260px) and (min-width: 1260px) {
+                        & {
+                            width: 770px;
+                        }
+                    }
+                }
+
+                & #shoutbox {
+                    z-index: 9999;
+                    height: 100%;
+                    margin: 0;
+                    grid-area: b;
+
+                    @media (min-width: 768px) and (min-width: 768px) {
+                        & {
+                            width: 300px !important;
+                        }
+                    }
+
+                    @media (min-width: 1260px) and (min-width: 1260px) {
+                        & {
+                            width: 370px !important;
+                        }
+                    }
+
+                    @media (min-width: 768px) and (min-width: 768px) {
+
+                        & .shoutbox-sort-toggle {
+                            right: 152px !important if customTitles;
+                            right: 21px;
+                        }
+                    }
+
+                    @media (min-width: 1260px) and (min-width: 1260px) {
+                        & .shoutbox-sort-toggle {
+                            right: 223px !important if customTitles;
+                            right: 21px;
+                        }
+                    }
+
+                    @media (min-width: 768px) and (min-width: 768px) {
+
+                        & #shoutbox-sort {
+                            left: 110px !important if customTitles;
+                            left: 21px;
+
+                            &::before {
+                                left: unset if customTitles
+                            }
+                        }
+                    }
+
+                    @media (min-width: 1260px) and (min-width: 1260px) {
+
+                        & #shoutbox-sort {
+                            left: 108px !important if customTitles;
+                            left: 21px;
+
+                            &::before {
+                                left: unset if customTitles
+                            }
+                        }
+
+                    }
+
+                    & :not(.modal-body)~.no-data-message {
+
+                        @media (min-width: 768px) and (min-width: 768px) {
+                            & {
+                                width: 300px !important;
+                            }
+                        }
+
+                        @media (min-width: 1260px) and (min-width: 1260px) {
+                            & {
+                                width: 370px !important;
+                            }
+                        }
+                    }
+
+                    & .shoutbox {
+                        padding-right: 12px;
+                        position: sticky;
+                        top: mastheadHeight + 20;
+                        max-height: maxSize;
+                        overflow-x: hidden;
+                        overflow-y: auto;
+
+                        & .shout-form {
+                            margin-top: 27px;
+                        }
+
+                        & :not(.shout-form) {
+                            & .shout {
+                                @media (min-width: 768px) and (min-width: 768px) {
+                                    & {
+                                        margin-left: avatarSize*1.5;
+                                    }
+                                }
+
+                                @media (min-width: 1260px) and (min-width: 1260px) {
+                                    & {
+                                        margin-left: avatarSize*1.5;
+                                    }
+                                }
+                            }
+
+                            & .shout-user-avatar {
+                                .avatar-status-dot {
+                                    height: (avatarSize/6.5);
+                                    width: (avatarSize/6.5);
+                                    left: 2%;
+                                    top: 2%;
+                                }
+
+                                @media (min-width: 768px) and (min-width: 768px) {
+                                    & {
+                                        width: avatarSize;
+                                        height: avatarSize;
+                                        left: - avatarSize*1.5;
+                                    }
+                                }
+
+                                @media (min-width: 1260px) and (min-width: 1260px) {
+                                    & {
+                                        width: avatarSize;
+                                        height: avatarSize;
+                                        left: - avatarSize*1.5;
+                                    }
+                                }
+
+                                &+a {
+                                    @media (min-width: 768px) and (min-width: 768px) {
+                                        & {
+                                            width: avatarSize;
+                                            height: avatarSize;
+                                            left: - avatarSize*1.5;
+                                        }
+                                    }
+
+                                    @media (min-width: 1260px) and (min-width: 1260px) {
+                                        & {
+                                            width: avatarSize;
+                                            height: avatarSize;
+                                            left: - avatarSize*1.5;
+                                        }
+                                    }
+                                }
+                            }
+
+                            & .shout-list-item .shout-list-item {
+                                margin-left: 18px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        if alignTop {
+            unless removeUseless or removePlay {
+                .row:not(:has(.about-me-sidebar)) {
+                    & #shoutbox {
+                        top: -334px;
+                        height: calc(100% + 334px) !important
+                    }
+
+                    &:not(:has(.promo-v3>[class*="month"])) #shoutbox {
+                        /* if only 2 reports */
+                        top: -247px;
+                        height: calc(100% + 247px) !important
+                    }
+                }
+
+                .row:has(.about-me-sidebar) {
+                    & #shoutbox {
+                        top: -151px;
+                        height: calc(100% + 151px) !important
+                    }
+
+                    &:not(:has(.promo-v3>[class*="month"])) #shoutbox {
+                        /* if only 2 reports */
+                        top: 0px;
+                    }
+                }
+
+                .row:has(.about-me-sidebar) {
+                    &:has(.promo-v3>[class*="month"]) {
+                        & #shoutbox {
+                            top: -151px;
+                            height: calc(100% + 151px) !important
+                        }
+                    }
+
+                    &:not(:has(.promo-v3>[class*="month"])) {
+                        &:has(.events-list-sidebar tbody>:last-child:nth-child(3)) {
+
+                            /* if 3 events */
+                            & #shoutbox {
+                                top: -341px;
+                                height: calc(100% + 341px) !important
+                            }
+                        }
+
+                        &:has(.events-list-sidebar tbody>:last-child:nth-child(2)) {
+
+                            /* if 2 events */
+                            & #shoutbox {
+                                top: -252px;
+                                height: calc(100% + 252px) !important
+                            }
+                        }
+                    }
+                }
+
+                .row:not(:has(.about-me-sidebar)) {
+                    & #shoutbox {
+                        top: -334px;
+                        height: calc(100% + 334px) !important
+                    }
+
+                    &:has(.events-list-sidebar tbody>:last-child:nth-child(3)) {
+
+                        /* if 3 events */
+                        & #shoutbox {
+                            top: -675px;
+                            height: calc(100% + 675px) !important
+                        }
+                    }
+
+                    &:has(.events-list-sidebar tbody>:last-child:nth-child(2)) {
+
+                        /* if 2 events */
+                        & #shoutbox {
+                            top: -586px;
+                            height: calc(100% + 586px) !important
+                        }
+                    }
+
+                    &:not(:has(.promo-v3>[class*="month"])) {
+                        & #shoutbox {
+                            /* if only 2 reports */
+                            top: -247px;
+                            height: calc(100% + 247px) !important
+                        }
+
+                        &:has(.events-list-sidebar tbody>:last-child:nth-child(3)) {
+
+                            /* if 3 events */
+                            & #shoutbox {
+                                top: -588px;
+                                height: calc(100% + 588px) !important
+                            }
+                        }
+
+                        &:has(.events-list-sidebar tbody>:last-child:nth-child(2)) {
+
+                            /* if 2 events */
+                            & #shoutbox {
+                                top: -499px;
+                                height: calc(100% + 499px) !important
+                            }
+                        }
+                    }
+                }
+            }
+
+            if removeUseless or removePlay {
+                unless exceptProfile {
+                    .row:has(.about-me-sidebar) {
+                        &:has(.events-list-sidebar tbody>:last-child:nth-child(3)) {
+
+                            /* if 3 events */
+                            & #shoutbox {
+                                top: -341px;
+                                height: calc(100% + 341px) !important
+                            }
+                        }
+
+                        &:has(.events-list-sidebar tbody>:last-child:nth-child(2)) {
+
+                            /* if 2 events */
+                            & #shoutbox {
+                                top: -414px;
+                                height: calc(100% + 414px) !important
+                            }
+                        }
+                    }
+
+                    .row:not(:has(.about-me-sidebar)) {
+                        & #shoutbox {
+                            top: -161px;
+                            height: calc(100% + 131px) !important
+                        }
+
+                        &:has(.events-list-sidebar tbody>:last-child:nth-child(3)) {
+
+                            /* if 3 events */
+                            & #shoutbox {
+                                top: -503px;
+                                height: calc(100% + 503px) !important
+                            }
+                        }
+
+                        &:has(.events-list-sidebar tbody>:last-child:nth-child(2)) {
+
+                            /* if 2 events */
+                            & #shoutbox {
+                                top: -414px;
+                                height: calc(100% + 414px) !important
+                            }
+                        }
+                    }
+                }
+
+                if exceptProfile {
+                    .row:has(.about-me-sidebar) {
+                        &:has(.promo-v3>[class*="month"]) {
+                            & #shoutbox {
+                                top: -181px;
+                                height: calc(100% + 181px) !important
+                            }
+                        }
+
+                        &:not(:has(.promo-v3>[class*="month"])) {
+                            &:has(.events-list-sidebar tbody>:last-child:nth-child(3)) {
+
+                                /* if 3 events */
+                                & #shoutbox {
+                                    top: -341px;
+                                    height: calc(100% + 341px) !important
+                                }
+                            }
+
+                            &:has(.events-list-sidebar tbody>:last-child:nth-child(2)) {
+
+                                /* if 2 events */
+                                & #shoutbox {
+                                    top: -252px;
+                                    height: calc(100% + 252px) !important
+                                }
+                            }
+                        }
+                    }
+
+                    .row:not(:has(.about-me-sidebar)) {
+                        & #shoutbox {
+                            top: -334px;
+                            height: calc(100% + 334px) !important
+                        }
+
+                        &:has(.events-list-sidebar tbody>:last-child:nth-child(3)) {
+
+                            /* if 3 events */
+                            & #shoutbox {
+                                top: -675px;
+                                height: calc(100% + 675px) !important
+                            }
+                        }
+
+                        &:has(.events-list-sidebar tbody>:last-child:nth-child(2)) {
+
+                            /* if 2 events */
+                            & #shoutbox {
+                                top: -586px;
+                                height: calc(100% + 586px) !important
+                            }
+                        }
+
+                        &:not(:has(.promo-v3>[class*="month"])) {
+                            & #shoutbox {
+                                /* if only 2 reports */
+                                top: -247px;
+                                height: calc(100% + 247px) !important
+                            }
+
+                            &:has(.events-list-sidebar tbody>:last-child:nth-child(3)) {
+
+                                /* if 3 events */
+                                & #shoutbox {
+                                    top: -588px;
+                                    height: calc(100% + 588px) !important
+                                }
+                            }
+
+                            &:has(.events-list-sidebar tbody>:last-child:nth-child(2)) {
+
+                                /* if 2 events */
+                                & #shoutbox {
+                                    top: -499px;
+                                    height: calc(100% + 499px) !important
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

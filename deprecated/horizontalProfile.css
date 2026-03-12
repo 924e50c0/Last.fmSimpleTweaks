@@ -1,0 +1,449 @@
+/*
+@var checkbox   horizontalProfile   "⯈ Horizontal profile (removes labs)" 0
+*/
+if horizontalProfile {
+    if darkMode {
+        if customTitles {
+
+            .share-chart .share-button-profile,
+            .dropdown-menu-clickable-button.section-control,
+            .section-control,
+            :not(#recent-tracks-section)>.section-settings-toggle {
+                top: 75.6px
+            }
+
+            .col-sidebar:has(.listening-report-promo) .promo-v3 {
+                row-gap: 20px !important;
+            }
+
+            .anhv1:not(:is([class*="namespace--settings"])) .col-sidebar h2:not(.footer-heading, .share-heading):has(~.listening-report-promo) {
+                color: #fafafa;
+                margin-bottom: 10px;
+                font-size: 24px;
+                font-weight: 700;
+                line-height: 42px;
+                text-decoration: underline;
+                text-transform: uppercase;
+                text-underline-offset: 17px;
+                text-wrap: nowrap;
+            }
+
+            if stickyShoutbox {
+                .shoutbox-sort-toggle {
+                    top: -2.5px
+                }
+
+                #shoutbox h2 {
+                    font-size: 18px;
+                    font-weight: 700;
+                    line-height: 24px;
+                    margin-bottom: unset;
+                    margin-top: 10px;
+                    text-decoration: unset;
+                    text-underline-offset: unset;
+
+                    if alignTop {
+                        margin-top: unset;
+                    }
+                }
+            }
+        }
+
+    }
+
+    if hatchingMotif {
+        .promo-v3 .listening-report-promo {
+            background-position: 0 190%;
+        }
+    }
+
+    section.labs-cta,
+    [id*="mpu"],
+    div.page-content:nth-child(1) {
+        display: none;
+    }
+
+    .header--overview.header--with-avatar .header-info {
+        height: 173px;
+    }
+
+    .row:has(.listening-report-promo) {
+        display: flex;
+        flex-direction: column-reverse;
+        gap: 30px;
+    }
+
+    .row:has(.listening-report-promo)::before {
+        display: none;
+    }
+
+    .row:has(.listening-report-promo)::after {
+        display: none;
+    }
+
+    .col-sidebar:has(.listening-report-promo) {
+        width: 100%;
+        display: grid;
+        grid-template-areas: "a b c" "a d e" "f f f";
+
+        @media (min-width: 768px) and (min-width: 768px) {
+            & {
+                gap: 20px;
+            }
+        }
+
+        @media (min-width: 1260px) and (min-width: 1260px) {
+            & {
+                gap: 30px;
+            }
+        }
+
+        & .promo-v3 {
+            grid-area: a;
+            margin: 0;
+            align-content: baseline;
+            display: grid;
+            gap: 10px;
+
+            & h2 {
+                margin-bottom: 12px;
+            }
+
+            & .listening-report-promo {
+                position: relative;
+                margin: 0;
+            }
+
+            @media (min-width: 768px) and (min-width: 768px) {
+                & {
+                    width: 300px;
+                }
+            }
+
+            @media (min-width: 1260px) and (min-width: 1260px) {
+                & {
+                    width: 370px;
+                }
+            }
+        }
+
+        & .about-me-sidebar {
+            justify-self: right;
+            grid-area: c;
+
+            @media (min-width: 768px) and (min-width: 768px) {
+                & {
+                    width: 300px;
+                }
+            }
+
+            @media (min-width: 1260px) and (min-width: 1260px) {
+                & {
+                    width: 370px;
+                }
+            }
+        }
+
+        & .stationlinks {
+            justify-self: left;
+            margin-top: 0px;
+            align-self: end;
+            grid-area: d;
+
+            @media (min-width: 768px) and (min-width: 768px) {
+                & {
+                    width: 300px;
+                }
+            }
+
+            @media (min-width: 1260px) and (min-width: 1260px) {
+                & {
+                    width: 370px;
+                }
+            }
+        }
+
+        & .your-progress-component {
+            grid-area: b;
+            justify-self: left;
+            margin: 0;
+
+            @media (min-width: 768px) and (min-width: 768px) {
+                & {
+                    width: 300px;
+                }
+            }
+
+            @media (min-width: 1260px) and (min-width: 1260px) {
+                & {
+                    width: 370px;
+                }
+            }
+
+            & h3 {
+                margin-top: 6px;
+                margin-bottom: 18px;
+            }
+
+            & .btn-subscribe {
+                margin-top: 14px;
+            }
+        }
+
+        & .mpu-subscription-upsell {
+            justify-self: right;
+            text-align: left;
+            align-content: end;
+            grid-area: e;
+            display: none;
+            margin: 0;
+
+            @media (min-width: 768px) and (min-width: 768px) {
+                & {
+                    width: 300px;
+                }
+            }
+
+            @media (min-width: 1260px) and (min-width: 1260px) {
+                & {
+                    width: 370px;
+                }
+            }
+        }
+
+        & .user-events-sidebar {
+            grid-area: f;
+            justify-self: left;
+            justify-items: left;
+            margin: 0;
+            display: grid;
+            gap: 10px;
+            grid-template-areas: "a b" "c d" "e f";
+
+            @media (min-width: 768px) and (min-width: 768px) {
+                & {
+                    width: 600px;
+                }
+            }
+
+            @media (min-width: 1260px) and (min-width: 1260px) {
+                & {
+                    width: 770px;
+                }
+            }
+
+            &>*:not(p) {
+
+                @media (min-width: 768px) and (min-width: 768px) {
+                    & {
+                        width: 300px;
+                    }
+                }
+
+                @media (min-width: 1260px) and (min-width: 1260px) {
+                    & {
+                        width: 370px;
+                    }
+                }
+            }
+
+            & h2 {
+                grid-area: a;
+            }
+
+            & h3:last-of-type {
+                margin: 0;
+                grid-area: c
+            }
+
+            & h3 {
+                margin: 0;
+                grid-area: d
+            }
+
+            & .events-list-sidebar:last-of-type {
+                margin: 0;
+
+                @media (min-width: 768px) and (min-width: 768px) {
+                    & {
+                        margin-right: 10px;
+                    }
+                }
+
+                @media (min-width: 1260px) and (min-width: 1260px) {
+                    & {
+                        margin-right: 20px;
+                    }
+                }
+
+                grid-area: e;
+            }
+
+            & .events-list-sidebar {
+                margin: 0;
+                grid-area: f
+            }
+
+            & .more-link {
+                grid-area: b;
+                justify-self: left;
+                margin: 0;
+                height: 30px;
+                display: grid;
+                align-items: center;
+            }
+        }
+    }
+
+    .col-sidebar:has(.listening-report-promo):not(:has(.your-progress-component)) {
+
+        &:not(:has(.about-me-sidebar)) {
+            justify-content: left;
+        }
+
+        &:has(.about-me-sidebar) {
+            grid-template-areas: "a b c" "a d c" "f f f";
+        }
+
+        &:not(:has(.events-list-sidebar)) {
+            grid-template-areas: "a b c" "a d c";
+        }
+    }
+
+    if removeUseless or removePlay {
+        unless exceptProfile {
+            .col-sidebar:has(.listening-report-promo):not(:has(.your-progress-component)):not(:has(.events-list-sidebar)) {
+                grid-template-areas: "a a c";
+
+                & .promo-v3 {
+                    grid-area: a;
+                    margin: 0;
+                    display: grid;
+                    grid-template-areas: "a a a" "b c d";
+                    gap: 10px;
+
+                    &:not(:has([class*="month"])) {
+                        & .listening-report-promo--year {
+                            grid-area: c;
+                        }
+                    }
+
+                    & .listening-report-promo {
+                        position: relative;
+                    }
+
+                    @media (min-width: 768px) and (min-width: 768px) {
+                        & {
+                            width: 300px;
+                        }
+                    }
+
+                    @media (min-width: 1260px) and (min-width: 1260px) {
+                        & {
+                            width: 370px;
+                        }
+                    }
+                }
+
+                & .listening-report-promo {
+                    margin: 0;
+                    height: 80px;
+
+                    @media (min-width: 768px) and (min-width: 768px) {
+                        & {
+                            width: 200px;
+                        }
+                    }
+
+                    @media (min-width: 1260px) and (min-width: 1260px) {
+                        & {
+                            width: 250px;
+                        }
+                    }
+                }
+
+                & [class*="week"] {
+                    grid-area: b;
+                }
+
+                & [class*="month"] {
+                    grid-area: c;
+                }
+
+                & [class*="year"] {
+                    grid-area: d;
+                }
+            }
+        }
+
+        if removeAds or removeUseless {
+            unless exceptProfile {
+                .col-sidebar:has(.listening-report-promo) {
+                    & .promo-v3 {
+                        grid-area: a;
+                        margin: 0;
+                        display: grid;
+                        grid-template-areas: "a a a" "b c d";
+                        gap: 10px;
+
+                        &:not(:has([class*="month"])) {
+
+                            & .listening-report-promo--year {
+                                grid-area: c;
+                            }
+                        }
+
+                        & .listening-report-promo {
+                            position: relative;
+                        }
+
+                        @media (min-width: 768px) and (min-width: 768px) {
+                            & {
+                                width: 300px;
+                            }
+                        }
+
+                        @media (min-width: 1260px) and (min-width: 1260px) {
+                            & {
+                                width: 370px;
+                            }
+                        }
+                    }
+
+                    & .listening-report-promo {
+                        margin: 0;
+                        height: 80px;
+
+                        @media (min-width: 768px) and (min-width: 768px) {
+                            & {
+                                width: 200px;
+                            }
+
+                            & .listening-report-promo-date {
+                                padding-right: 17px;
+                            }
+                        }
+
+                        @media (min-width: 1260px) and (min-width: 1260px) {
+                            & {
+                                width: 250px;
+                            }
+                        }
+                    }
+
+                    & [class*="week"] {
+                        grid-area: b;
+                    }
+
+                    & [class*="month"] {
+                        grid-area: c;
+                    }
+
+                    & [class*="year"] {
+                        grid-area: d;
+                    }
+                }
+            }
+        }
+    }
+}
