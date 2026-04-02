@@ -2,7 +2,7 @@
 @name           Last.fm Simple Tweaks
 @namespace      https://github.com/924e50c0
 @author         924e50c0
-@version        0.1.4
+@version        0.1.5
 @description    A collection of simple tweaks for last.fm.
 
 @preprocessor   stylus
@@ -28,13 +28,13 @@
 @var range      tintAmountD         "   └ Tint amount" [5, 0, 60, 1, '%']
 @var checkbox   tagsLink            " ↳ Use tag color for tag links" 1
 @var checkbox   mainBG              " ↳ Main background" 0
-@var checkbox   customTitles        " ↳ Use custom titles" 1
-@var checkbox   customButtons       " ↳ Use custom buttons" 1
-@var checkbox   animateButtons      " ↳ Animations" 1
-@var checkbox   animateTags         "  ├ Tags" 1
+@var checkbox   customTitles        " ↳ Use custom titles" 0
+@var checkbox   customButtons       " ↳ Use custom buttons" 0
+@var checkbox   animateButtons      " ↳ Animations" 0
+@var checkbox   animateTags         "  ├ Tags" 0
 @var checkbox   animateReport       "  └ Listening Report" 0
 @var checkbox   coloredButtons      " ↳ Color Listening Report buttons" 0
-@var checkbox   invertText          "  ├ Black text" 0
+@var checkbox   invertText          "  ├ Black text" 1
 @var checkbox   onlyBorders         "  ├ Only borders" 0
 @var checkbox   clipButtons         "  ├ Clip buttons" 0
 @var checkbox   hatchingMotif       "  └ Hatching" 0
@@ -45,32 +45,33 @@
 @var number     customWidthValue    "  └ Value"[1230, 980, 2000, 5, 'px']
 @var checkbox   customIcons         "⯈ Use custom icon set " 1
 @var checkbox   anonymousMode       "⯈ Screenshot mode" 0
-@var checkbox   radiusOverwrite     "⯈ Overwrite border radii" 1
+@var checkbox   radiusOverwrite     "⯈ Overwrite border radii" 0
 @var range      borderRadii         " ↳ Overall radius" [5, 0, 50, 1, 'px']
 @var checkbox   avatarOverwrite     "  ↳ Avatar" 1
-@var range      avatarRadius        "   ├ Radius" [5, 0, 50, 1, '%']
+@var range      avatarRadius        "   ├ Radius" [10, 0, 50, 1, '%']
 @var checkbox   followButton        "   └ Use for follow button?" 1
 @var select     radiusBehaviour     "    └ Radius:" {"Adaptive":"adaptive", "Absolute":"absolute"}
 @var checkbox   buttonOverwrite     "  ↳ Buttons" 0
 @var range      buttonRadius        "   └ Radius" [5, 0, 50, 1, 'px']
 @var checkbox   removeUseless       "⯈ Remove all useless features" 0
 @var checkbox   removePlay          " ↳ Remove play features" 1
+@var checkbox   exceptVideo         "  ├ Except header video" 1
 @var checkbox   exceptProfile       "  ├ Except profile header" 0
 @var checkbox   popularWeek         "  ├ Except popular this week" 0
-@var checkbox   exceptPlaylist      "  └ Except playlist" 1
+@var checkbox   exceptPlaylist      "  └ Except playlist" 0
 @var checkbox   removeBuy           " ↳ Remove buylinks" 1
 @var checkbox   removeAds           " ↳ Remove last.fm pro ads" 1
 @var checkbox   removeTrending      " ↳ Remove trending tracks" 1
 @var checkbox   removeLabs          " ↳ Remove profile Labs button" 1
 @var checkbox   removeFooter        " ↳ Remove footer" 0
-@var checkbox   removeSeparator     "⯈ Remove section separator" 1
-@var checkbox   stickyProfile       "⯈ Sticky profile" 1
-@var checkbox   stickyCharts        "⯈ Sticky library charts" 1
+@var checkbox   removeSeparator     "⯈ Remove section separator" 0
+@var checkbox   stickyProfile       "⯈ Sticky profile" 0
+@var checkbox   stickyCharts        "⯈ Sticky library charts" 0
 @var number     mastheadHeight      " ↳ offset (px)" [68, 0, null, 1, "px"]
 @var checkbox   removeHeader        "⯈ Remove header images" 0
 @var checkbox   rmProfile           " ↳ Profile" 1
 @var checkbox   rmLibrary           " ↳ Library" 1
-@var checkbox   shoutAvatar         "⯈ Shoutbox avatar" 1
+@var checkbox   shoutAvatar         "⯈ Shoutbox avatar" 0
 @var range      avatarSize          " ↳ Avatar size" [40, 0, 70, 1, 'px']
 ==/UserStyle== */
 @-moz-document domain("last.fm") {
@@ -314,7 +315,10 @@
         color: var(--fg) !important;
       }
     }
-
+    .top-bar path {
+      stroke: var(accentColor);
+      fill: var(accentColor);
+    }
     .btn-add,
     .btn-primary,
     .no-data-message-button,
@@ -481,7 +485,7 @@
     .more-items {
       color: var(--link);
     }
-
+    
     .main-content,
     .header--overview,
     .container.page-content,
@@ -515,7 +519,8 @@
     .recs-feed .context,
     .gallery-preview-cta,
     .coloured-cta,
-    .album-artwork-upload-cta {
+    .album-artwork-upload-cta,
+    .video-preview-upload-cta{
       background: var(--bgSubtle);
       color: var(--fg)
     }
@@ -525,7 +530,8 @@
     .coloured-cta:not(.cta--inactive):focus,
     .coloured-cta:not(.cta--inactive):hover,
     .gallery-preview-cta:not(.cta--inactive):focus,
-    .gallery-preview-cta:not(.cta--inactive):hover {
+    .gallery-preview-cta:not(.cta--inactive):hover,
+ .video-preview-upload-cta:not(.cta--inactive):focus, .video-preview-upload-cta:not(.cta--inactive):hover{
       background-color: var(--bgSubtle-hover);
     }
 
@@ -649,7 +655,9 @@
     .globalchart .globalchart-item {
       box-shadow: 0 1px var(--borderLight), inset 0 -1px var(--borderLight)
     }
-
+    .video-preview-upload-cta {
+      box-shadow: 0 0 0 2px var(--borderSubtle);
+    }
     table.table td,
     table.table th,
     .secondary-nav,
@@ -834,6 +842,13 @@
       .coloured-cta--wiki-icon::before {
         background: unset;
         mask-image: url("/static/images/icons/edit_dark_32.png");
+        mask-size: cover;
+        background-color: var(--fgSubtle)
+      }
+      
+      .video-preview-upload-cta::before {
+        background-image: unset;
+        mask-image: url("/static/images/icons/video_dark_48.d1f34621fc50.png");
         mask-size: cover;
         background-color: var(--fgSubtle)
       }
@@ -1481,7 +1496,7 @@ if radiusOverwrite {
 
   if removePlay or removeUseless {
     .track-overview-video-column {
-      display: none;
+      display: none unless exceptVideo;
     }
 
     .player-bar-inner-wrap,
