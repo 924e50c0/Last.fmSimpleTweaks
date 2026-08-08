@@ -2313,4 +2313,9 @@ if radiusOverwrite {
       margin-top: 0;
     }
   }
+
+  ::selection {
+    color: #fff;
+    background: #050 !important;
+  }
 }
