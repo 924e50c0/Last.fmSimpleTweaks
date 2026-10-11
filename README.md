@@ -1,5 +1,5 @@
 # Last.fmSimpleTweaks
-A collection of simple (?) tweaks for last.fm.
+A collection of simple tweaks for last.fm.
 UserCSS compatible with [Stylus](https://github.com/openstyles/stylus).
 
 ## Installation
@@ -9,11 +9,10 @@ Install or download the [theme](https://raw.githubusercontent.com/924e50c0/Last.
 Everything is optional save for small changes to visual inconsistencies.
 
 - Custom theme with dark and light variant
-- Easily themeable set of new icons
+- New icons
 - Visual tweaks (avatar border radius, shoutbox avatar size, animated buttons, …)
 - Bloat remover (ads, playlinks, buylinks, …)
 - Sticky sidebars
-- Screenshot mode that censors personal informations on profiles (see below)
 
 ## To-do list
 ### Features
@@ -34,7 +33,8 @@ Everything is optional save for small changes to visual inconsistencies.
 | ------------------------------------------------------- | ------------------------------------------- |
 
 ## Changelog
-- 12.03.2025 / [v0.2.0](https://github.com/924e50c0/Last.fmSimpleTweaks/commit/a248b01ac8a2e79e18d8dd526dcdf6ec4be40cef) - Removed deprecated options, automatic theme, custom font & border radius
+- 11.10.2026 / [v0.2.1](https://github.com/924e50c0/Last.fmSimpleTweaks/commit/7acd20c9ae7c1917501c30bb02896dc9ceb83494) - Removed deprecated options, added selection colors
+- 12.03.2026 / [v0.2.0](https://github.com/924e50c0/Last.fmSimpleTweaks/commit/a248b01ac8a2e79e18d8dd526dcdf6ec4be40cef) - Removed deprecated options, automatic theme, custom font & border radius
 - 31.08.2025 / v0.1.3 - Fixed full width breaking empty album pages
 - 08.08.2025 / v0.1.2 - Fixed full width breaking charts on profile pages
 - 02.08.2025 / v0.1.1 - Fixed full width breaking song pages
