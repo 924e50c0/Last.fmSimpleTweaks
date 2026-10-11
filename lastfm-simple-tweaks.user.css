@@ -2,7 +2,7 @@
 @name           Last.fm Simple Tweaks
 @namespace      https://github.com/924e50c0
 @author         924e50c0
-@version        0.1.5
+@version        0.2.1
 @description    A collection of simple tweaks for last.fm.
 
 @preprocessor   stylus
@@ -38,13 +38,15 @@
 @var checkbox   onlyBorders         "  ├ Only borders" 0
 @var checkbox   clipButtons         "  ├ Clip buttons" 0
 @var checkbox   hatchingMotif       "  └ Hatching" 0
+@var checkbox   selectionCustom     "⯈ Use custom text selection colors" 0
+@var color      selectionColor      " ↳ Selection color" #fff
+@var color      selectionBackground " ↳ Selection background" #883f3f
 @var text       fontFamily          "⯈ Font family" "Barlow"
 @var checkbox   fullWidth           "⯈ Use full width" 0
 @var checkbox   includeProfile      " ↳ Include profile page" 1
 @var checkbox   customWidth         " ↳ Use custom width instead" 0
 @var number     customWidthValue    "  └ Value"[1230, 980, 2000, 5, 'px']
 @var checkbox   customIcons         "⯈ Use custom icon set " 1
-@var checkbox   anonymousMode       "⯈ Screenshot mode" 0
 @var checkbox   radiusOverwrite     "⯈ Overwrite border radii" 0
 @var range      borderRadii         " ↳ Overall radius" [5, 0, 50, 1, 'px']
 @var checkbox   avatarOverwrite     "  ↳ Avatar" 1
@@ -75,176 +77,170 @@
 @var range      avatarSize          " ↳ Avatar size" [40, 0, 70, 1, 'px']
 ==/UserStyle== */
 @-moz-document domain("last.fm") {
-  @import url('https://fonts.googleapis.com/css2?family=Flow+Circular&display=swap');
-
   if customTheme {
-        @media (prefers-color-scheme: light) {
-            html {
-                if selectMode==isdark {
-                    --bgDark: bgColor;
-                    --bgDark-hover: lighten(bgColor, 5.5%);
-                    --bgSubtle: lighten(bgColor, 6.5%);
-                    --bgSubtle-hover: lighten(bgColor, 9.5%);
-                    --bgLight: lighten(bgColor, 11.5%);
-                    --bgLight-hover: lighten(bgColor, 15.5%);
-                    --fg: fgColor;
-                    --fgSubtle: darken(fgColor, 38%);
-                    --fgLight: darken(fgColor, 48%);
-                    --link: linkColor;
-                    --borderDark: lighten(bgColor, 9.5%);
-                    --borderSubtle: lighten(bgColor, 13%);
-                    --borderLight: lighten(bgColor, 20%);
-                    --tag: tagColor;
-                    --accentColor-hover: lighten(accentColor, 11%);
-                    --accent-color: accentColor;
-                    accent-color: accentColor;
-
-                    if bgTint {
-                        --bgDark: mix(accentColor, bgColor, tintAmount);
-                        --bgDark-hover: lighten(mix(accentColor, bgColor, tintAmount), 5.5%);
-                        --bgSubtle: lighten(mix(accentColor, bgColor, tintAmount), 6.5%);
-                        --bgSubtle-hover: lighten(mix(accentColor, bgColor, tintAmount), 9.5%);
-                        --bgLight: lighten(mix(accentColor, bgColor, tintAmount), 11.5%);
-                        --bgLight-hover: lighten(mix(accentColor, bgColor, tintAmount), 15.5%);
-                        --fg: fgColor;
-                        --fgSubtle: darken(fgColor, 38%);
-                        --fgLight: darken(fgColor, 48%);
-                        --link: linkColor;
-                        --borderDark: lighten(mix(accentColor, bgColor, tintAmount), 9.5%);
-                        --borderSubtle: lighten(mix(accentColor, bgColor, tintAmount), 13%);
-                        --borderLight: lighten(mix(accentColor, bgColor, tintAmount), 20%);
-                        --tag: tagColor;
-                        --accentColor-hover: lighten(accentColor, 11%);
-                        --accent-color: accentColor;
-                        accent-color: accentColor;
-                    }
-                }
-
-                if selectMode==islight {
-                    --bgDark: bgColor;
-                    --bgDark-hover: darken(bgColor, 5.5%);
-                    --bgSubtle: darken(bgColor, 6.5%);
-                    --bgSubtle-hover: darken(bgColor, 9.5%);
-                    --bgLight: darken(bgColor, 11.5%);
-                    --bgLight-hover: darken(bgColor, 15.5%);
-                    --fg: fgColor;
-                    --fgSubtle: lighten(fgColor, 38%);
-                    --fgLight: lighten(fgColor, 48%);
-                    --link: linkColor;
-                    --borderDark: darken(bgColor, 9.5%);
-                    --borderSubtle: darken(bgColor, 13%);
-                    --borderLight: darken(bgColor, 20%);
-                    --tag: tagColor;
-                    --accentColor-hover: darken(accentColor, 11%);
-                    --accent-color: accentColor;
-                    accent-color: accentColor;
-
-                    if bgTint {
-                        --bgDark: mix(accentColor, bgColor, tintAmount);
-                        --bgDark-hover: darken(mix(accentColor, bgColor, tintAmount), 5.5%);
-                        --bgSubtle: darken(mix(accentColor, bgColor, tintAmount), 6.5%);
-                        --bgSubtle-hover: darken(mix(accentColor, bgColor, tintAmount), 9.5%);
-                        --bgLight: darken(mix(accentColor, bgColor, tintAmount), 11.5%);
-                        --bgLight-hover: darken(mix(accentColor, bgColor, tintAmount), 15.5%);
-                        --fg: fgColor;
-                        --fgSubtle: lighten(fgColor, 38%);
-                        --fgLight: lighten(fgColor, 48%);
-                        --link: linkColor;
-                        --borderDark: darken(mix(accentColor, bgColor, tintAmount), 9.5%);
-                        --borderSubtle: darken(mix(accentColor, bgColor, tintAmount), 13%);
-                        --borderLight: darken(mix(accentColor, bgColor, tintAmount), 20%);
-                        --tag: tagColor;
-                        --accentColor-hover: darken(accentColor, 11%);
-                        --accent-color: accentColor;
-                        accent-color: accentColor;
-                    }
-                }
-            }
-        }
-        @media (prefers-color-scheme: dark) {
-            html {
-                if selectModeD==isdark {
-                    --bgDark: bgColorD;
-                    --bgDark-hover: lighten(bgColorD, 5.5%);
-                    --bgSubtle: lighten(bgColorD, 6.5%);
-                    --bgSubtle-hover: lighten(bgColorD, 9.5%);
-                    --bgLight: lighten(bgColorD, 11.5%);
-                    --bgLight-hover: lighten(bgColorD, 15.5%);
-                    --fg: fgColorD;
-                    --fgSubtle: darken(fgColorD, 38%);
-                    --fgLight: darken(fgColorD, 48%);
-                    --link: linkColorD;
-                    --borderDark: lighten(bgColorD, 9.5%);
-                    --borderSubtle: lighten(bgColorD, 13%);
-                    --borderLight: lighten(bgColorD, 20%);
-                    --tag: tagColorD;
-                    --accentColor-hover: lighten(accentColorD, 11%);
-                    --accent-color: accentColorD;
-                    accent-color: accentColorD;
-
-                    if bgTintD {
-                        --bgDark: mix(accentColorD, bgColorD, tintAmountD);
-                        --bgDark-hover: lighten(mix(accentColorD, bgColorD, tintAmountD), 5.5%);
-                        --bgSubtle: lighten(mix(accentColorD, bgColorD, tintAmountD), 6.5%);
-                        --bgSubtle-hover: lighten(mix(accentColorD, bgColorD, tintAmountD), 9.5%);
-                        --bgLight: lighten(mix(accentColorD, bgColorD, tintAmountD), 11.5%);
-                        --bgLight-hover: lighten(mix(accentColorD, bgColorD, tintAmountD), 15.5%);
-                        --fg: fgColorD;
-                        --fgSubtle: darken(fgColorD, 38%);
-                        --fgLight: darken(fgColorD, 48%);
-                        --link: linkColorD;
-                        --borderDark: lighten(mix(accentColorD, bgColorD, tintAmountD), 9.5%);
-                        --borderSubtle: lighten(mix(accentColorD, bgColorD, tintAmountD), 13%);
-                        --borderLight: lighten(mix(accentColorD, bgColorD, tintAmountD), 20%);
-                        --tag: tagColorD;
-                        --accentColor-hover: lighten(accentColorD, 11%);
-                        --accent-color: accentColorD;
-                        accent-color: accentColorD;
-                    }
-                }
-
-                if selectModeD==islight {
-                    --bgDark: bgColorD;
-                    --bgDark-hover: darken(bgColorD, 5.5%);
-                    --bgSubtle: darken(bgColorD, 6.5%);
-                    --bgSubtle-hover: darken(bgColorD, 9.5%);
-                    --bgLight: darken(bgColorD, 11.5%);
-                    --bgLight-hover: darken(bgColorD, 15.5%);
-                    --fg: fgColorD
-                    --fgSubtle: lighten(fgColorD, 38%);
-                    --fgLight: lighten(fgColorD, 48%);
-                    --link: linkColorD;
-                    --borderDark: darken(bgColorD, 9.5%);
-                    --borderSubtle: darken(bgColorD, 13%);
-                    --borderLight: darken(bgColorD, 20%);
-                    --tag: tagColorD;
-                    --accentColor-hover: darken(accentColorD, 11%);
-                    --accent-color: accentColorD;
-                    accent-color: accentColorD;
-
-                    if bgTintD {
-                        --bgDark: mix(accentColorD, bgColorD, tintAmountD);
-                        --bgDark-hover: darken(mix(accentColorD, bgColorD, tintAmountD), 5.5%);
-                        --bgSubtle: darken(mix(accentColorD, bgColorD, tintAmountD), 6.5%);
-                        --bgSubtle-hover: darken(mix(accentColorD, bgColorD, tintAmountD), 9.5%);
-                        --bgLight: darken(mix(accentColorD, bgColorD, tintAmountD), 11.5%);
-                        --bgLight-hover: darken(mix(accentColorD, bgColorD, tintAmountD), 15.5%);
-                        --fg: fgColorD;
-                        --fgSubtle: lighten(fgColor, 38%);
-                        --fgLight: lighten(fgColor, 48%);
-                        --link: linkColorD;
-                        --borderDark: darken(mix(accentColorD, bgColorD, tintAmountD), 9.5%);
-                        --borderSubtle: darken(mix(accentColorD, bgColorD, tintAmountD), 13%);
-                        --borderLight: darken(mix(accentColorD, bgColorD, tintAmountD), 20%);
-                        --tag: tagColorD;
-                        --accentColor-hover: darken(accentColorD, 11%);
-                        --accent-color: accentColorD;
-                        accent-color: accentColorD;
-                    }
-                }
-            }
+    @media (prefers-color-scheme: light) {
+      html {
+        if selectMode==isdark {
+          --bgDark: bgColor;
+          --bgDark-hover: lighten(bgColor, 5.5%);
+          --bgSubtle: lighten(bgColor, 6.5%);
+          --bgSubtle-hover: lighten(bgColor, 9.5%);
+          --bgLight: lighten(bgColor, 11.5%);
+          --bgLight-hover: lighten(bgColor, 15.5%);
+          --fg: fgColor;
+          --fgSubtle: darken(fgColor, 38%);
+          --fgLight: darken(fgColor, 48%);
+          --link: linkColor;
+          --borderDark: lighten(bgColor, 9.5%);
+          --borderSubtle: lighten(bgColor, 13%);
+          --borderLight: lighten(bgColor, 20%);
+          --tag: tagColor;
+          --accentColor-hover: lighten(accentColor, 11%);
+          --accent-color: accentColor;
+          accent-color: accentColor;
+          if bgTint {
+            --bgDark: mix(accentColor, bgColor, tintAmount);
+            --bgDark-hover: lighten(mix(accentColor, bgColor, tintAmount), 5.5%);
+            --bgSubtle: lighten(mix(accentColor, bgColor, tintAmount), 6.5%);
+            --bgSubtle-hover: lighten(mix(accentColor, bgColor, tintAmount), 9.5%);
+            --bgLight: lighten(mix(accentColor, bgColor, tintAmount), 11.5%);
+            --bgLight-hover: lighten(mix(accentColor, bgColor, tintAmount), 15.5%);
+            --fg: fgColor;
+            --fgSubtle: darken(fgColor, 38%);
+            --fgLight: darken(fgColor, 48%);
+            --link: linkColor;
+            --borderDark: lighten(mix(accentColor, bgColor, tintAmount), 9.5%);
+            --borderSubtle: lighten(mix(accentColor, bgColor, tintAmount), 13%);
+            --borderLight: lighten(mix(accentColor, bgColor, tintAmount), 20%);
+            --tag: tagColor;
+            --accentColor-hover: lighten(accentColor, 11%);
+            --accent-color: accentColor;
+            accent-color: accentColor;
+          }
         }
 
+        if selectMode==islight {
+          --bgDark: bgColor;
+          --bgDark-hover: darken(bgColor, 5.5%);
+          --bgSubtle: darken(bgColor, 6.5%);
+          --bgSubtle-hover: darken(bgColor, 9.5%);
+          --bgLight: darken(bgColor, 11.5%);
+          --bgLight-hover: darken(bgColor, 15.5%);
+          --fg: fgColor;
+          --fgSubtle: lighten(fgColor, 38%);
+          --fgLight: lighten(fgColor, 48%);
+          --link: linkColor;
+          --borderDark: darken(bgColor, 9.5%);
+          --borderSubtle: darken(bgColor, 13%);
+          --borderLight: darken(bgColor, 20%);
+          --tag: tagColor;
+          --accentColor-hover: darken(accentColor, 11%);
+          --accent-color: accentColor;
+          accent-color: accentColor;
+          if bgTint {
+            --bgDark: mix(accentColor, bgColor, tintAmount);
+            --bgDark-hover: darken(mix(accentColor, bgColor, tintAmount), 5.5%);
+            --bgSubtle: darken(mix(accentColor, bgColor, tintAmount), 6.5%);
+            --bgSubtle-hover: darken(mix(accentColor, bgColor, tintAmount), 9.5%);
+            --bgLight: darken(mix(accentColor, bgColor, tintAmount), 11.5%);
+            --bgLight-hover: darken(mix(accentColor, bgColor, tintAmount), 15.5%);
+            --fg: fgColor;
+            --fgSubtle: lighten(fgColor, 38%);
+            --fgLight: lighten(fgColor, 48%);
+            --link: linkColor;
+            --borderDark: darken(mix(accentColor, bgColor, tintAmount), 9.5%);
+            --borderSubtle: darken(mix(accentColor, bgColor, tintAmount), 13%);
+            --borderLight: darken(mix(accentColor, bgColor, tintAmount), 20%);
+            --tag: tagColor;
+            --accentColor-hover: darken(accentColor, 11%);
+            --accent-color: accentColor;
+            accent-color: accentColor;
+          }
+        }
+      }
+    }
+
+    @media (prefers-color-scheme: dark) {
+      html {
+        if selectModeD==isdark {
+          --bgDark: bgColorD;
+          --bgDark-hover: lighten(bgColorD, 5.5%);
+          --bgSubtle: lighten(bgColorD, 6.5%);
+          --bgSubtle-hover: lighten(bgColorD, 9.5%);
+          --bgLight: lighten(bgColorD, 11.5%);
+          --bgLight-hover: lighten(bgColorD, 15.5%);
+          --fg: fgColorD;
+          --fgSubtle: darken(fgColorD, 38%);
+          --fgLight: darken(fgColorD, 48%);
+          --link: linkColorD;
+          --borderDark: lighten(bgColorD, 9.5%);
+          --borderSubtle: lighten(bgColorD, 13%);
+          --borderLight: lighten(bgColorD, 20%);
+          --tag: tagColorD;
+          --accentColor-hover: lighten(accentColorD, 11%);
+          --accent-color: accentColorD;
+          accent-color: accentColorD;
+          if bgTintD {
+            --bgDark: mix(accentColorD, bgColorD, tintAmountD);
+            --bgDark-hover: lighten(mix(accentColorD, bgColorD, tintAmountD), 5.5%);
+            --bgSubtle: lighten(mix(accentColorD, bgColorD, tintAmountD), 6.5%);
+            --bgSubtle-hover: lighten(mix(accentColorD, bgColorD, tintAmountD), 9.5%);
+            --bgLight: lighten(mix(accentColorD, bgColorD, tintAmountD), 11.5%);
+            --bgLight-hover: lighten(mix(accentColorD, bgColorD, tintAmountD), 15.5%);
+            --fg: fgColorD;
+            --fgSubtle: darken(fgColorD, 38%);
+            --fgLight: darken(fgColorD, 48%);
+            --link: linkColorD;
+            --borderDark: lighten(mix(accentColorD, bgColorD, tintAmountD), 9.5%);
+            --borderSubtle: lighten(mix(accentColorD, bgColorD, tintAmountD), 13%);
+            --borderLight: lighten(mix(accentColorD, bgColorD, tintAmountD), 20%);
+            --tag: tagColorD;
+            --accentColor-hover: lighten(accentColorD, 11%);
+            --accent-color: accentColorD;
+            accent-color: accentColorD;
+          }
+        }
+
+        if selectModeD==islight {
+          --bgDark: bgColorD;
+          --bgDark-hover: darken(bgColorD, 5.5%);
+          --bgSubtle: darken(bgColorD, 6.5%);
+          --bgSubtle-hover: darken(bgColorD, 9.5%);
+          --bgLight: darken(bgColorD, 11.5%);
+          --bgLight-hover: darken(bgColorD, 15.5%);
+          --fg: fgColorD;
+          --fgSubtle: lighten(fgColorD, 38%);
+          --fgLight: lighten(fgColorD, 48%);
+          --link: linkColorD;
+          --borderDark: darken(bgColorD, 9.5%);
+          --borderSubtle: darken(bgColorD, 13%);
+          --borderLight: darken(bgColorD, 20%);
+          --tag: tagColorD;
+          --accentColor-hover: darken(accentColorD, 11%);
+          --accent-color: accentColorD;
+          accent-color: accentColorD;
+          if bgTintD {
+            --bgDark: mix(accentColorD, bgColorD, tintAmountD);
+            --bgDark-hover: darken(mix(accentColorD, bgColorD, tintAmountD), 5.5%);
+            --bgSubtle: darken(mix(accentColorD, bgColorD, tintAmountD), 6.5%);
+            --bgSubtle-hover: darken(mix(accentColorD, bgColorD, tintAmountD), 9.5%);
+            --bgLight: darken(mix(accentColorD, bgColorD, tintAmountD), 11.5%);
+            --bgLight-hover: darken(mix(accentColorD, bgColorD, tintAmountD), 15.5%);
+            --fg: fgColorD;
+            --fgSubtle: lighten(fgColor, 38%);
+            --fgLight: lighten(fgColor, 48%);
+            --link: linkColorD;
+            --borderDark: darken(mix(accentColorD, bgColorD, tintAmountD), 9.5%);
+            --borderSubtle: darken(mix(accentColorD, bgColorD, tintAmountD), 13%);
+            --borderLight: darken(mix(accentColorD, bgColorD, tintAmountD), 20%);
+            --tag: tagColorD;
+            --accentColor-hover: darken(accentColorD, 11%);
+            --accent-color: accentColorD;
+            accent-color: accentColorD;
+          }
+        }
+      }
+    }
 
     if mainBG {
       div.container.page-content {
@@ -252,7 +248,6 @@
         border-radius: 12px;
         padding-bottom: 30px;
         box-shadow: 10px 10px 15px -10px black;
-
         if darkShade==black {
           box-shadow: 10px 10px 15px -10px #0d0d0d;
         }
@@ -309,16 +304,17 @@
     .gallery-image-preferred-off {
       background-color: var(--bgLight);
       color: var(--fg);
-
       &:hover {
         background-color: var(--bgLight-hover) !important;
         color: var(--fg) !important;
       }
     }
+
     .top-bar path {
       stroke: var(accentColor);
       fill: var(accentColor);
     }
+
     .btn-add,
     .btn-primary,
     .no-data-message-button,
@@ -418,7 +414,6 @@
       }
     }
 
-
     .promo-v3 .listening-report-promo {
       background: none;
     }
@@ -485,7 +480,7 @@
     .more-items {
       color: var(--link);
     }
-    
+
     .main-content,
     .header--overview,
     .container.page-content,
@@ -520,7 +515,7 @@
     .gallery-preview-cta,
     .coloured-cta,
     .album-artwork-upload-cta,
-    .video-preview-upload-cta{
+    .video-preview-upload-cta {
       background: var(--bgSubtle);
       color: var(--fg)
     }
@@ -531,13 +526,13 @@
     .coloured-cta:not(.cta--inactive):hover,
     .gallery-preview-cta:not(.cta--inactive):focus,
     .gallery-preview-cta:not(.cta--inactive):hover,
- .video-preview-upload-cta:not(.cta--inactive):focus, .video-preview-upload-cta:not(.cta--inactive):hover{
+    .video-preview-upload-cta:not(.cta--inactive):focus,
+    .video-preview-upload-cta:not(.cta--inactive):hover {
       background-color: var(--bgSubtle-hover);
     }
 
     .labs-cta .btn-primary.btn-labs-cta {
       background: var(--bgSubtle);
-
       &:hover {
         background: var(--bgSubtle-hover)
       }
@@ -655,9 +650,11 @@
     .globalchart .globalchart-item {
       box-shadow: 0 1px var(--borderLight), inset 0 -1px var(--borderLight)
     }
+
     .video-preview-upload-cta {
       box-shadow: 0 0 0 2px var(--borderSubtle);
     }
+
     table.table td,
     table.table th,
     .secondary-nav,
@@ -695,12 +692,10 @@
 
     #scrobble-chart-content,
     .listener-trend {
-
       .highcharts-background,
       .highcharts-alternate-grid {
         fill: none;
       }
-
 
       .highcharts-axis-line {
         stroke: var(--bgSubtle)
@@ -721,7 +716,6 @@
     .scrobble-stats-info-tooltip,
     .date-range-picker-content {
       background: var(--bgLight);
-
       &::before {
         background-color: var(--bgLight) !important;
       }
@@ -731,7 +725,6 @@
       width: 36px;
       height: 36px;
     }
-
 
     .dropdown-menu-clickable-item:not(.dropdown-menu-clickable-item--selected),
     .date-range-picker-presets :not([class*="selected"]) a,
@@ -845,7 +838,7 @@
         mask-size: cover;
         background-color: var(--fgSubtle)
       }
-      
+
       .video-preview-upload-cta::before {
         background-image: unset;
         mask-image: url("/static/images/icons/video_dark_48.d1f34621fc50.png");
@@ -881,7 +874,6 @@
         text-decoration: underline;
         text-transform: uppercase;
         text-underline-offset: 17px;
-
         & ~ .buffer-standard {
           margin-top: 32px;
         }
@@ -945,7 +937,6 @@
       color: var(--tag) !important;
       border: 1px solid var(--tag) !important;
       box-shadow: none !important;
-
       &:hover,
       :focus,
       :active {
@@ -959,7 +950,6 @@
         if animateReport {
           .promo-v3 .listening-report-promo {
             transition: border .18s ease;
-
             &:hover,
             :focus,
             :active {
@@ -967,7 +957,6 @@
             }
 
             if coloredButtons {
-
               &:hover,
               :focus,
               :active {
@@ -982,7 +971,6 @@
           .tags-add,
           .tags-add-cta {
             transition: .07s ease !important;
-
             &:hover,
             :focus,
             :active {
@@ -1057,7 +1045,6 @@
       }
 
       if coloredButtons {
-
         if clipButtons {
           .promo-v3 .listening-report-promo {
             clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 0 100%);
@@ -1075,14 +1062,12 @@
         .promo-v3 .listening-report-promo {
           border-color: transparent;
           color: var(--fg) unless onlyBorders;
-
           & span.listening-report-promo-title {
             color: var(--fgSubtle) unless onlyBorders
           }
         }
 
         if invertText {
-
           .promo-v3 .listening-report-promo-date {
             color: black !important;
           }
@@ -1095,7 +1080,6 @@
         .promo-v3 .listening-report-promo--week {
           background-color: #ffcace unless onlyBorders;
           border-color: #ffcace if onlyBorders;
-
           &:hover,
           &:focus {
             background-color: #ffb9be unless onlyBorders;
@@ -1106,7 +1090,6 @@
         .promo-v3 .listening-report-promo--month {
           background-color: #51ffc5 unless onlyBorders;
           border-color: #51ffc5 if onlyBorders;
-
           &:hover,
           &:focus {
             background-color: #30f3b2 unless onlyBorders;
@@ -1117,7 +1100,6 @@
         .promo-v3 .listening-report-promo--year {
           background-color: #469df8 unless onlyBorders;
           border-color: #469df8 if onlyBorders;
-
           &:hover,
           &:focus {
             background-color: #3593f6 unless onlyBorders;
@@ -1126,8 +1108,14 @@
         }
       }
     }
-  }
 
+    if selectionCustom {
+      ::selection {
+        color: selectionColor;
+        background: selectionBackground !important;
+      }
+    }
+  }
 
   /*** Last.fm Simple Tweaks ***/
   .content-form .inplace-field,
@@ -1154,7 +1142,6 @@
   if fullWidth {
     body:not(.anhv2.user-dashboard-layout,
     .anhv1[class*="namespace--user"]) {
-
       div.container.page-content,
       .header-new-content,
       .header--user .container,
@@ -1166,7 +1153,6 @@
       .header-inner-wrap {
         display: grid;
         grid-template-columns: auto 1fr;
-
         & .header-info {
           width: unset !important;
         }
@@ -1179,7 +1165,6 @@
       .metadata-and-wiki-row {
         display: flex;
         justify-content: space-between;
-
         & .metadata-column {
           order: 2;
           width: 320px;
@@ -1194,7 +1179,6 @@
         div.container.page-content .row {
           display: grid;
           grid-template-columns: 2fr 1fr;
-
           .upper-overview {
             order: -1
           }
@@ -1209,7 +1193,6 @@
       div.container.page-content .row.buffer-4 {
         display: flex;
         flex-wrap: wrap;
-
         & .col-main {
           width: 66%
         }
@@ -1223,9 +1206,7 @@
         width: unset
       }
 
-
       if customWidth {
-
         div.container.page-content,
         .header-new-content,
         .header--user .container {
@@ -1248,7 +1229,6 @@
       }
 
       body:not(.anhv2.user-dashboard-layout) {
-
         div.container.page-content,
         .header-new-content,
         .header--user .container,
@@ -1260,7 +1240,6 @@
         .header-inner-wrap {
           display: grid;
           grid-template-columns: auto 1fr;
-
           & .header-info {
             width: unset !important;
           }
@@ -1273,7 +1252,6 @@
         .metadata-and-wiki-row {
           display: flex;
           justify-content: space-between;
-
           & .metadata-column {
             order: 2;
             width: 320px;
@@ -1288,7 +1266,6 @@
           div.container.page-content .row {
             display: grid;
             grid-template-columns: 2fr 1fr;
-
             .upper-overview {
               order: -1
             }
@@ -1304,9 +1281,7 @@
           width: unset
         }
 
-
         if customWidth {
-
           div.container.page-content,
           .header-new-content,
           .header--user .container {
@@ -1326,155 +1301,187 @@
       }
     }
   }
-if radiusOverwrite {
-  .avatar-shape,
-  .auth-avatar-desktop,
-  .header-avatar :not(.big-artist-list-wrap) .avatar img,
-  .header-avatar .avatar::after,
-  div:not(.content-teaser):not(:has( + a[href*="/music/"])) > .avatar:not(.tasteometer-avatar,
-  .big-artist-list-avatar-desktop) img,
-  div:not(.content-teaser):not(:has( + a[href*="/music/"])) > .avatar:not(.tasteometer-avatar)::after {
-    border-radius: borderRadii ;
-    .avatar-status-dot {
-      border-radius: borderRadii * 2 !important;
-    }
-  }
 
-  
-.content-form .form-control, .content-form input[type="date"], .content-form input[type="email"], .content-form input[type="number"], .content-form input[type="password"], .content-form input[type="text"], .content-form input[type="url"], .content-form select, .content-form textarea {
-  border-radius: borderRadii;
-}
-  .site-auth .auth-dropdown-menu, .site-auth .auth-dropdown-menu-footer .auth-upgrade-cta, .site-auth .auth-dropdown-menu-footer .auth-logout-cta {
-    border-radius: borderRadii;
-  }
-  .btn-primary, .btn-post-shout {
-    border-radius: borderRadii;
-  }
-  .dropdown-menu-clickable, .dropdown-menu-clickable-item {
-    border-radius: borderRadii;
-  }
-  .cover-art>img {
-    border-radius: borderRadii;
-  }
-  .listening-report-promo {
-    border-radius: borderRadii;
-  }
-  .chartlist-count-bar-slug {
-    border-radius: borderRadii;
-  }
-  .chartlist tbody>tr {
-    border-radius: borderRadii;
-  }
-  .user-list-follower-btn {
-    border-radius: borderRadii !important;
-  }
-  #ot-sdk-btn {
-    border-radius: borderRadii !important;
-  }
-  .grid-items--numbered.grid-items--big-first {
-    /* library top 5 items with big item */
-    .grid-items-item {
-      &:nth-child(1) {
-        .grid-items-cover-image-image>img {
-          border-radius: borderRadii 0 0 borderRadii;
-        }
-      }
-      &:nth-child(3) {
-        .grid-items-cover-image-image>img {
-          border-radius: 0 borderRadii 0 0;
-        }
-      }
-      &:nth-child(5) {
-        .grid-items-cover-image-image>img {
-          border-radius: 0 0 borderRadii 0;
-        }
+  if radiusOverwrite {
+    .avatar-shape,
+    .auth-avatar-desktop,
+    .header-avatar :not(.big-artist-list-wrap) .avatar img,
+    .header-avatar .avatar::after,
+    div:not(.content-teaser):not(:has( + a[href*="/music/"])) > .avatar:not(.tasteometer-avatar,
+    .big-artist-list-avatar-desktop) img,
+    div:not(.content-teaser):not(:has( + a[href*="/music/"])) > .avatar:not(.tasteometer-avatar)::after {
+      border-radius: borderRadii;
+      .avatar-status-dot {
+        border-radius: borderRadii * 2 !important;
       }
     }
-  }
-  .grid-items--numbered:not(:has(>.grid-items-item:nth-child(8))) {
-    /* library top 4 items */
-    .grid-items-item {
-      &:nth-child(1) {
-        .grid-items-cover-image-image>img {
-          border-radius: borderRadii 0 0 borderRadii;
-        }
-      }
-      &:nth-child(4) {
-        .grid-items-cover-image-image>img {
-          border-radius: 0 borderRadii borderRadii 0;
-        }
-      }
-    }
-  }
-  .grid-items--numbered:has(>.grid-items-item:nth-child(8)) {
-    /* library top 4 items */
-    .grid-items-item {
-      &:nth-child(1) {
-        .grid-items-cover-image-image>img {
-          border-radius: borderRadii 0 0 0;
-        }
-      }
-      &:nth-child(4) {
-        .grid-items-cover-image-image>img {
-          border-radius: 0 borderRadii 0 0;
-        }
-      }
-      &:nth-child(5) {
-        .grid-items-cover-image-image>img {
-          border-radius: 0 0 0 borderRadii;
-        }
-      }
-      &:nth-child(8) {
-        .grid-items-cover-image-image>img {
-          border-radius: 0 0 borderRadii 0;
-        }
-      }
-    }
-  }
 
-  if avatarOverwrite {
-.avatar-shape,
-  .auth-avatar-desktop,
-  .header-avatar :not(.big-artist-list-wrap) .avatar img,
-  .header-avatar .avatar::after,
-  div:not(.content-teaser):not(:has( + a[href*="/music/"])) > .avatar:not(.tasteometer-avatar,
-  .big-artist-list-avatar-desktop) img,
-  div:not(.content-teaser):not(:has( + a[href*="/music/"])) > .avatar:not(.tasteometer-avatar)::after {
-    border-radius: avatarRadius;
-  }
-    .avatar-status-dot {
-      border-radius: avatarRadius * 2 !important;
+    .content-form .form-control,
+    .content-form input[type="date"],
+    .content-form input[type="email"],
+    .content-form input[type="number"],
+    .content-form input[type="password"],
+    .content-form input[type="text"],
+    .content-form input[type="url"],
+    .content-form select,
+    .content-form textarea {
+      border-radius: borderRadii;
     }
-    if followButton {
-      if radiusBehaviour==adaptive {
-        .header-follower-btn::before {
-          border-radius: avatarRadius * 3 !important;
+
+    .site-auth .auth-dropdown-menu,
+    .site-auth .auth-dropdown-menu-footer .auth-upgrade-cta,
+    .site-auth .auth-dropdown-menu-footer .auth-logout-cta {
+      border-radius: borderRadii;
+    }
+
+    .btn-primary,
+    .btn-post-shout {
+      border-radius: borderRadii;
+    }
+
+    .dropdown-menu-clickable,
+    .dropdown-menu-clickable-item {
+      border-radius: borderRadii;
+    }
+
+    .cover-art > img {
+      border-radius: borderRadii;
+    }
+
+    .listening-report-promo {
+      border-radius: borderRadii;
+    }
+
+    .chartlist-count-bar-slug {
+      border-radius: borderRadii;
+    }
+
+    .chartlist tbody > tr {
+      border-radius: borderRadii;
+    }
+
+    .user-list-follower-btn {
+      border-radius: borderRadii !important;
+    }
+
+    #ot-sdk-btn {
+      border-radius: borderRadii !important;
+    }
+
+    .grid-items--numbered.grid-items--big-first {
+      /* library top 5 items with big item */
+      .grid-items-item {
+        &:nth-child(1) {
+          .grid-items-cover-image-image > img {
+            border-radius: borderRadii 0 0 borderRadii;
+          }
         }
+
+        &:nth-child(3) {
+          .grid-items-cover-image-image > img {
+            border-radius: 0 borderRadii 0 0;
+          }
+        }
+
+        &:nth-child(5) {
+          .grid-items-cover-image-image > img {
+            border-radius: 0 0 borderRadii 0;
+          }
+        }
+      }
+    }
+
+    .grid-items--numbered:not(:has( > .grid-items-item:nth-child(8))) {
+      /* library top 4 items */
+      .grid-items-item {
+        &:nth-child(1) {
+          .grid-items-cover-image-image > img {
+            border-radius: borderRadii 0 0 borderRadii;
+          }
+        }
+
+        &:nth-child(4) {
+          .grid-items-cover-image-image > img {
+            border-radius: 0 borderRadii borderRadii 0;
+          }
+        }
+      }
+    }
+
+    .grid-items--numbered:has( > .grid-items-item:nth-child(8)) {
+      /* library top 4 items */
+      .grid-items-item {
+        &:nth-child(1) {
+          .grid-items-cover-image-image > img {
+            border-radius: borderRadii 0 0 0;
+          }
+        }
+
+        &:nth-child(4) {
+          .grid-items-cover-image-image > img {
+            border-radius: 0 borderRadii 0 0;
+          }
+        }
+
+        &:nth-child(5) {
+          .grid-items-cover-image-image > img {
+            border-radius: 0 0 0 borderRadii;
+          }
+        }
+
+        &:nth-child(8) {
+          .grid-items-cover-image-image > img {
+            border-radius: 0 0 borderRadii 0;
+          }
+        }
+      }
+    }
+
+    if avatarOverwrite {
+      .avatar-shape,
+      .auth-avatar-desktop,
+      .header-avatar :not(.big-artist-list-wrap) .avatar img,
+      .header-avatar .avatar::after,
+      div:not(.content-teaser):not(:has( + a[href*="/music/"])) > .avatar:not(.tasteometer-avatar,
+      .big-artist-list-avatar-desktop) img,
+      div:not(.content-teaser):not(:has( + a[href*="/music/"])) > .avatar:not(.tasteometer-avatar)::after {
+        border-radius: avatarRadius;
       }
 
-      if radiusBehaviour==absolute {
-        .header-follower-btn::before, .user-list-follower-btn {
-          border-radius: avatarRadius !important;
+      .avatar-status-dot {
+        border-radius: avatarRadius * 2 !important;
+      }
+
+      if followButton {
+        if radiusBehaviour==adaptive {
+          .header-follower-btn::before {
+            border-radius: avatarRadius * 3 !important;
+          }
+        }
+
+        if radiusBehaviour==absolute {
+          .header-follower-btn::before,
+          .user-list-follower-btn {
+            border-radius: avatarRadius !important;
+          }
         }
       }
     }
-  }
-  if buttonOverwrite {
-    .btn-primary, .btn-post-shout {
-      border-radius: buttonRadius;
+
+    if buttonOverwrite {
+      .btn-primary,
+      .btn-post-shout {
+        border-radius: buttonRadius;
+      }
     }
   }
-}
-  
 
   if removeBuy or removeUseless {
-
-    & div[class*="buylinks"],
-    & button[class*="buylinks"],
-    & ul[class*="buylinks"] {
+    div[class*="buylinks"],
+    button[class*="buylinks"],
+    ul[class*="buylinks"] {
       display: none !important;
     }
-
 
     li:has(.menu-title + [class*=buylinks]),
     .external-links-section:has([class*="playlinks"]) {
@@ -1550,7 +1557,6 @@ if radiusOverwrite {
     }
 
     if popularWeek {
-
       .artist-header-featured-items-item-wrap--video-thumbnail:has([class*="playlink"]),
       .video-preview-playlink,
       #track-page-video-playlink {
@@ -1587,7 +1593,6 @@ if radiusOverwrite {
   }
 
   if removeUseless or removePlay {
-
     .chartlist--with-bar.chartlist--with-index.chartlist--with-play.chartlist--with-image .chartlist-row--with-artist .chartlist-artist,
     .chartlist--with-multi-playlinks.chartlist--with-index.chartlist--with-play.chartlist--with-image .chartlist-row--with-artist .chartlist-artist {
       left: 78px
@@ -1604,9 +1609,7 @@ if radiusOverwrite {
     }
   }
 
-
   if removeAds or removeUseless {
-
     .subscribe-cta,
     .btn-subscribe,
     .lastfm-ad,
@@ -1637,7 +1640,6 @@ if radiusOverwrite {
       display: none;
     }
   }
-
 
   if removeSeparator {
     .section-with-separator::after {
@@ -1674,6 +1676,7 @@ if radiusOverwrite {
         opacity: .5;
       }
     }
+
     if rmLibrary {
       .header-new-inner {
         background: var(--bgDark) !important;
@@ -1681,13 +1684,16 @@ if radiusOverwrite {
         .header-new-background {
           display: none;
         }
+
         .header-metadata-tnew-title {
           color: var(--fg);
           opacity: .6;
         }
+
         .header-metadata-tnew-display {
           color: var(--fg);
         }
+
         .header-new-on-tour {
           color: var(--fg);
           box-shadow: inset 0 0 0 1px var(--borderLight);
@@ -1696,14 +1702,19 @@ if radiusOverwrite {
             box-shadow: inset 0 0 0 1px var(--fgLight) !important;
           }
         }
+
         .header-new-playlink,
-        .header-new-bookmark-button, .header-new-download-button, .header-new-love-button, .header-new-more-button {
+        .header-new-bookmark-button,
+        .header-new-download-button,
+        .header-new-love-button,
+        .header-new-more-button {
           @media (prefers-color-scheme: light) {
             background: var(--bgLight);
             &:hover {
               background: var(--bgSubtle) !important;
             }
           }
+
           @media (prefers-color-scheme: dark) {
             background: var(--fgSubtle);
             &:hover {
@@ -1721,7 +1732,6 @@ if radiusOverwrite {
       position: sticky;
       height: 100%;
       top: mastheadHeight + 20;
-
       if removeAds or removeUseless {
         & .sidebar-section {
           margin: 0 !important;
@@ -1729,7 +1739,6 @@ if radiusOverwrite {
       }
     }
   }
-
 
   if shoutAvatar {
     .shoutbox {
@@ -1749,7 +1758,6 @@ if radiusOverwrite {
         }
 
         & .shout-user-avatar {
-
           @media (min-width: 768px) and (min-width: 768px) {
             & {
               width: avatarSize;
@@ -1787,110 +1795,8 @@ if radiusOverwrite {
       }
     }
   }
-  
-  if anonymousMode {
-    .grid-items-cover-image-image img {
-      height: 100%;
-      left: 0;
-      overflow: hidden;
-      position: absolute;
-      top: 0;
-      width: 100%;
-    }
 
-    .auth-dropdown-toggle img {
-      left: 0;
-      overflow: hidden;
-      position: absolute;
-      top: 0;
-    }
-
-    .avatar,
-    .auth-dropdown-toggle,
-    .grid-items-cover-image-image,
-    .header .header-background,
-    .image-list-item,
-    .cover-art {
-      &::before {
-        content: "";
-        display: block;
-        padding-top: 100%;
-        position: relative;
-        backdrop-filter: blur(10px);
-        z-index: 1;
-      }
-
-      &::after {
-        display: none !important;
-      }
-    }
-
-    .header .header-background::before {
-      height: 152px !important;
-      backdrop-filter: blur(50px);
-      padding-top: unset;
-      z-index: unset;
-    }
-
-    .header--overview.header--with-avatar .header-avatar .avatar::before {
-      backdrop-filter: blur(30px);
-    }
-
-    .auth-dropdown-toggle {
-      width: 36px;
-      height: 36px;
-
-      &::before {
-        border-radius: borderRadii;
-      }
-    }
-
-    .avatar::before {
-      border-radius: borderRadii;
-    }
-
-    .header--with-avatar .header-follower-btn {
-      z-index: 2;
-    }
-
-    .tasteometer-avatar::before,
-    .artist-similar-artists-sidebar-item-image::before,
-    .catalogue-overview-similar-artists-full-width-item-image::before {
-      border-radius: 50%;
-    }
-
-    .stationlink.js-playlink-station,
-    .featured-item-name,
-    .featured-item-artist,
-    .header-title-display-name,
-    .header-scrobble-since,
-    .header-title a,
-    .metadata-display,
-    .header-metadata .header-metadata-display a,
-    .about-me-sidebar p,
-    .user-list-about-me,
-    .chartlist-name a,
-    .chartlist-artist a,
-    .chartlist-timestamp span,
-    .link-block-target,
-    .grid-items-item-aux-text a,
-    .user-list-shared-artists a,
-    .tasteometer-compat-description,
-    .tasteometer-shared-artists,
-    textarea::placeholder,
-    .shout-body p {
-      font-family: "Flow Circular" !important;
-      font-weight: 400;
-      font-style: normal;
-    }
-
-    textarea::placeholder {
-      font-size: small;
-    }
-  }
-  
   if customIcons {
-
     [data-toggle-button-current-state="loved"] .chartlist-love-button::before,
     a.chartlist-love-button::before,
     button.chartlist-love-button::before {
@@ -2240,7 +2146,6 @@ if radiusOverwrite {
     .shout .vote-button:hover::before {
       background-color: green;
     }
-
 
     .gallery-image-vote-down-off .gallery-image-votes::before {
       transform: rotate(-180deg);
