@@ -2,7 +2,7 @@
 @name           Last.fm Simple Tweaks
 @namespace      https://github.com/924e50c0
 @author         924e50c0
-@version        0.2.1
+@version        0.2.2
 @description    A collection of simple tweaks for last.fm.
 
 @preprocessor   stylus
@@ -1162,6 +1162,16 @@
         display: unset
       }
 
+      .chartlist .chartlist-name {
+        width: 180px;
+      }
+
+      @media (min-width: 1260px) {
+        .chartlist .chartlist-name {
+          width: 330px;
+        }
+      }
+
       .metadata-and-wiki-row {
         display: flex;
         justify-content: space-between;
@@ -1247,6 +1257,18 @@
 
         .header--sub-page .header-inner-wrap {
           display: unset
+        }
+
+        .chartlist--with-artist .chartlist-name {
+          width: 180px;
+          min-width: 43%;
+        }
+
+        @media (min-width: 1260px) {
+          .chartlist--with-artist .chartlist-name {
+            width: 330px;
+            min-width: 48%;
+          }
         }
 
         .metadata-and-wiki-row {
